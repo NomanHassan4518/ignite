@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+
+@tailwind utilities;
+@layer {
+    .satisfy {
+      font-family: "Poppins", sans-serif;
+      font-family: "Satisfy", cursive;
+    }
+  
+  }
+
+
