@@ -14,7 +14,7 @@ const SideBar = () => {
             <div className="block border-b-[1px] border-gray-300 mb-7 pb-7">
                 <div className="flex justify-between">
                     <h2 className='font-semibold text-[30px]'>Filter</h2>
-                    <button>Clear All</button>
+                    <button className='cursor-pointer'>Clear All</button>
                 </div>
             </div>
 

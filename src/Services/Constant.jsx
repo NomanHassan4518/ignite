@@ -1,0 +1,1 @@
+export const addCart= "Add To Cart"

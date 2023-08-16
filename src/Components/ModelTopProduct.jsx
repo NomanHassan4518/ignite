@@ -3,7 +3,9 @@ import Modal from 'react-modal';
 import { topProduct } from './Data'
 import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../Services/Action/Action';
 
 const customStyles = {
   content: {
@@ -22,8 +24,15 @@ const ModelTopProduct = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modelData, setModelData] = useState("")
   const [quatity, setQuatity] = useState(1);
+  const [sizeBorder, setSizeBorder] = useState()
   const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const myData = useSelector((state) => state.cardData)
 
+
+  const handleCart =()=>{
+    dispatch(addToCart(modelData))
+  }
   const passData = () => {
     navigate("/detail", { state: { modelData: modelData } })
   }
@@ -34,7 +43,6 @@ const ModelTopProduct = () => {
 
   }
 
-  console.log(modelData);
 
   function closeModal() {
     setIsOpen(false);
@@ -47,6 +55,14 @@ const ModelTopProduct = () => {
   const sub = () => {
     setQuatity(quatity - 1)
   }
+
+  let index = 1
+
+  const sizebutton = (index) => {
+    setSizeBorder(index)
+  }
+
+
   return (
     <>
       <div>
@@ -55,7 +71,7 @@ const ModelTopProduct = () => {
           <div className=" border-[1px] rounded-lg border-gray-300 pt-6 mx-4 lg:px-4 lg:mx-9 pb-7">
             <div className="flex items-center justify-between mb-4 mx-2 ">
               <h3 className='text-lg lg:text-2xl font-bold mx-2 lg:mx-5 lg:mb-4'>Top Product</h3>
-              <a href="/" className='text-[1rem] '>See All Product</a>
+              <Link to="/shop" className='text-[1rem] '>See All Product</Link>
             </div>
 
             <div className='grid grid-cols-12 gap-4'>
@@ -91,7 +107,7 @@ const ModelTopProduct = () => {
           contentLabel="Example Modal"
           overlayClassName="Overlay2"
         >
-          <AiOutlineClose onClick={closeModal} />
+          <AiOutlineClose onClick={closeModal} className='cursor-pointer' />
           <div className="h-[28rem] overflow-y-autoscroll">
             <div className='lg:grid lg:grid-cols-12 flex flex-col'>
 
@@ -109,14 +125,14 @@ const ModelTopProduct = () => {
 
                 <div className='flex space-x-3'>
 
-                  <div className='border-[1px]  border-gray-200 uppercase rounded hover:border-black cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center'>
-                    <p className='font-bold text-md'>8</p>
-                  </div>
+                  <button className={`border-[1px]   uppercase rounded hover:border-black   cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center ${sizeBorder === 1 ? "border-black" : "border-gray-200"}`} onClick={() => { sizebutton(index) }}>
+                    <p className='font-bold text-md'>10</p>
+                  </button>
 
 
-                  <div className='border-[1px]  flex border-gray-200 uppercase rounded hover:border-gray-950 cursor-pointer transition duration-200 ease-in-out w-14 h-11 justify-center items-center' style={{ backgroundImage: `url("https://un.myignite.site/assets/images/soldout.png")`, backgroundPosition: "center center" }}>
-                    <p className='font-bold text-md' >8</p>
-                  </div>
+                  <button className={`border-[1px]   flex border-gray-200 hover:border-gray-700 uppercase rounded  cursor-pointer transition duration-200 ease-in-out w-14 h-11 justify-center items-center }`} style={{ backgroundImage: `url("https://un.myignite.site/assets/images/soldout.png")`, backgroundPosition: "center center" }}  >
+                    <p className='font-bold text-md' >9</p>
+                  </button>
                 </div>
 
 
@@ -124,13 +140,14 @@ const ModelTopProduct = () => {
                 <div className='flex mt-5 items-center justify-center space-x-4'>
 
                   <div className="flex bg-black text-white font-bold text-lg h-10 rounded-md">
-                    <button className='flex justify-center items-center w-12 border-e border-gray-400 cursor-pointer' onClick={sub} disabled={quatity === 1}>-</button>
-                    <span className='flex justify-center items-center lg:w-20 w-5  '>{quatity}</span>
+                    <button className='flex justify-center items-center w-8 border-e border-gray-400 cursor-pointer' onClick={sub} disabled={quatity === 1}>-</button>
+                    <span className='flex justify-center items-center lg:w-24 w-5  '>{quatity}</span>
                     <button className='flex justify-center  items-center w-8 border-s border-gray-400' onClick={add} >+</button>
                   </div>
 
+                
 
-                  <button className='px-8 bg-[#999999] h-12 w-full rounded text-[15px] flex justify-center items-center text-white font-semibold cursor-not-allowed hover:bg-black transition duration-500 ease-in-out'>
+                  <button className={`px-8 h-12 w-full rounded text-[15px] flex justify-center items-center text-white font-semibold  hover:bg-black transition duration-500 ease-in-out ${sizeBorder===1? "bg-black cursor-pointer":"bg-[#999999] cursor-not-allowed disabled:"}`} disabled={sizeBorder!=1} onClick={handleCart}>
                     Add to Cart
                   </button>
                 </div>

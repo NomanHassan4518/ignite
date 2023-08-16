@@ -5,9 +5,8 @@ import ModelTopProduct from './ModelTopProduct';
 
 const TopProduct = () => {
 
-
     return (
-        <ModelTopProduct/>
+        <ModelTopProduct />
     )
 }
 

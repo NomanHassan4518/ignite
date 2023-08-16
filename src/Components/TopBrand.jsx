@@ -41,7 +41,7 @@ const TopBrand = () => {
                 >
                     {
                         topBrand.map((a) => (
-                            <div className='flex flex-col items-center mt-9 lg:h-[18rem] justify-center '>
+                            <a href='/' className='flex flex-col items-center mt-9 lg:h-[18rem] justify-center '>
                                 <span className='sm:w-[191px] w-[50px] h-50px rounded-md'>
                                     <img src={a.url} alt="" />
                                 </span>
@@ -49,7 +49,7 @@ const TopBrand = () => {
                                 <span className='flex flex-col mt-[1rem] items-end justify-center'>
                                     <p className='text-xs sm:text-xl font-semibold mb-3'>{a.title}</p>
                                 </span>
-                            </div>
+                            </a>
                         ))
                     }
                 </Carousel>

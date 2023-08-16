@@ -71,11 +71,11 @@ const Footer = () => {
 
                 </div>
             </div>
-            <div className="w-full mx-auto border-t-[1px] mb-20 flex flex-col-reverse lg:flex-col  justify-center items-center border-gray-300 max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <span className="text-xs lg:text-sm text-gray-500 sm:text-center dark:text-gray-400 flex flex-wrap w-full justify-center items-center mt-1">Copyright © 2023  <a href="/" className="font-semibold text-black">Urban Necessities Riyadh</a>. All Rights Reserved.
+            <div className="w-full mx-auto border-t-[1px] mb-20 lg:mb-1 flex flex-col-reverse   lg:flex-row justify-center items-center border-gray-300 max-w-screen-xl p-4 lg:p-1 md:flex md:items-center md:justify-between">
+                <span className="text-xs lg:text-sm text-gray-500 sm:text-center dark:text-gray-400 flex flex-wrap w-full justify-center lg:justify-start items-center mt-1">Copyright © 2023  <Link to="/" className="font-semibold text-black">Urban Necessities Riyadh</Link>. All Rights Reserved.
                 </span>
-                <span className='mt-3 text-xl'>
-                    Powered by <a href='/' className='font-bold text-black'>Ignite</a>
+                <span className='mt-3 text-xl lg:w-52'>
+                    Powered by <a href="https://ignite.tech" target='_blank' className='font-bold text-black'>Ignite</a>
                 </span>
             </div>
         </footer>

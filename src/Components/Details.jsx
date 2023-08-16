@@ -1,7 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -11,7 +10,6 @@ const Details = (state) => {
   const [quantity, setQuatity] = useState(1)
   const location = useLocation();
   let productDetail = location.state.modelData
-  console.log(location.state)
 
   const add = () => {
     setQuatity(quantity + 1)
@@ -38,11 +36,11 @@ const Details = (state) => {
               showIndicators={false}
             >
               <div className='flex items-center justify-center'>
-                <img src={productDetail.url} />
+                <img src={productDetail.url} alt=''/>
 
               </div>
               <div className='flex items-center justify-center'>
-                <img src={productDetail.url1} />
+                <img src={productDetail.url1} alt=''/>
 
               </div>
 

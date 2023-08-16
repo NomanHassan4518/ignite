@@ -57,6 +57,8 @@ const RightSide = () => {
   const toggleDrawer = () => {
     setisOpen(false)
   }
+
+
   let title = <h1 className='text-center text-3xl font-bold'>Filters</h1>
   return (
     <>
@@ -147,14 +149,14 @@ const RightSide = () => {
 
                 <div className='flex space-x-3'>
 
-                  <div className='border-[1px]  border-gray-200 uppercase rounded hover:border-black cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center'>
-                    <p className='font-bold text-md'>8</p>
-                  </div>
+                  <button className='border-[1px]  border-gray-200 uppercase rounded hover:border-gray-950 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600 cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center' >
+                    <p className='font-bold text-md '>8</p>
+                  </button>
 
 
-                  <div className='border-[1px]  flex border-gray-200 uppercase rounded hover:border-gray-950 cursor-pointer transition duration-200 ease-in-out w-14 h-11 justify-center items-center' style={{ backgroundImage: `url("https://un.myignite.site/assets/images/soldout.png")`, backgroundPosition: "center center" }}>
+                  <button className='border-[1px]  flex border-gray-200 uppercase rounded hover:border-gray-950 cursor-pointer transition duration-200 ease-in-out w-14 h-11 justify-center items-center' style={{ backgroundImage: `url("https://un.myignite.site/assets/images/soldout.png")`, backgroundPosition: "center center" }}>
                     <p className='font-bold text-md' >8</p>
-                  </div>
+                  </button>
                 </div>
 
 
