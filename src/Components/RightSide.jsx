@@ -6,6 +6,8 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import SideBar from './SideBar'
 import { Drawer } from 'antd'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Services/Action/Action';
 
 const customStyles = {
   content: {
@@ -16,7 +18,7 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     width: "75%",
-    height:"450px"
+    height: "450px"
   },
 };
 
@@ -24,10 +26,24 @@ const RightSide = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modelData, setModelData] = useState("")
   const [quatity, setQuatity] = useState(1)
+  const [sizeBorder, setSizeBorder] = useState()
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const passData = (title) => {
     navigate("/detail", { state: { modelData: modelData } })
+  }
+
+  const handleCart =()=>{
+
+    const drawerData = 
+      {
+        Product:modelData,
+        quatity:quatity
+      }
+    
+
+    dispatch(addToCart(drawerData))
   }
 
   const sidebar = () => {
@@ -56,6 +72,12 @@ const RightSide = () => {
 
   const toggleDrawer = () => {
     setisOpen(false)
+  }
+
+  let index = 1
+
+  const sizebutton = (index) => {
+    setSizeBorder(index)
   }
 
 
@@ -149,8 +171,8 @@ const RightSide = () => {
 
                 <div className='flex space-x-3'>
 
-                  <button className='border-[1px]  border-gray-200 uppercase rounded hover:border-gray-950 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-600 cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center' >
-                    <p className='font-bold text-md '>8</p>
+                <button className={`border-[1px]   uppercase rounded hover:border-black   cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center ${sizeBorder === 1 ? "border-black" : "border-gray-200"}`} onClick={() => { sizebutton(index) }}>
+                    <p className='font-bold text-md'>10</p>
                   </button>
 
 
@@ -170,7 +192,7 @@ const RightSide = () => {
                   </div>
 
 
-                  <button className='lg:px-8 bg-[#999999] h-12 w-full rounded text-[15px] flex justify-center items-center text-white font-semibold cursor-not-allowed hover:bg-black transition duration-500 ease-in-out'>
+                  <button className={`lg:px-8 bg-[#999999] h-12 w-full rounded text-[15px] flex justify-center items-center text-white font-semibold cursor-not-allowed hover:bg-black transition duration-500 ease-in-out ${sizeBorder===1? "bg-black cursor-pointer":"bg-[#999999] cursor-not-allowed "}`} disabled={sizeBorder!==1} onClick={handleCart}>
                     Add to Cart
                   </button>
                 </div>

@@ -1,8 +1,8 @@
 import { addCart } from "../Constant"
 
-export const addToCart = (modelData) => {
+export const addToCart = (drawerData) => {
     return {
         type: addCart,
-        payload: modelData
+        payload: drawerData
     }
 }
