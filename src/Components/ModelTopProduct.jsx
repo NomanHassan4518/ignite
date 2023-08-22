@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addToCart, increaseToCart } from '../Services/Action/Action';
+import { addToCart} from '../Services/Action/Action';
 
 const customStyles = {
   content: {
@@ -36,9 +36,6 @@ const ModelTopProduct = () => {
     
     dispatch(addToCart(drawerData))
 
-    let id = drawerData.Product.id
-    dispatch(increaseToCart(id))
-    console.log("Product Id" ,id)
   }
 
   const passData = () => {
@@ -85,6 +82,7 @@ const ModelTopProduct = () => {
             </div>
 
             <div className='grid grid-cols-12 gap-4'>
+
               {
                 topProduct.map((Product) => (
 

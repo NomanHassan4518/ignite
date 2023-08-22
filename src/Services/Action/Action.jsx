@@ -1,4 +1,4 @@
-import { addCart, increaseCart, removeCart} from "../Constant"
+import { addCart, removeCart} from "../Constant"
 
 export const addToCart = (drawerData) => {
     return {
@@ -15,12 +15,5 @@ export const removeToCart = (index)=>{
 }
 
 
-
-export const increaseToCart = ( id  )=>{
-  return{
-    type:increaseCart,
-    payload:id
-  }
-}
 
 

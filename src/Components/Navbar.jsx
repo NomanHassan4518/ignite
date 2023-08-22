@@ -85,13 +85,14 @@ const Navbar = () => {
 
                     <nav className='bg-white lg:block hidden '>
                         <div className=" flex space-x-6 items-center justify-center">
-                            <div className='group py-7'>
-                                <Link to="/" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black '>
+                            <div className='group py-7 '>
+                                
+                                <Link to="/" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black group-hover:scale-x-95 after:w-full after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 after:scale-x-0 after:origin-right  hover:after:scale-x-[1] hover:after:origin-left'>
                                     <span className='text-xl '>Home</span>
                                 </Link>
                             </div>
-                            <div className='group py-7'>
-                                <Link to="/shop" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal  group-hover:text-black '>
+                            <div className='group py-7 '>
+                                <Link to="/shop" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal  group-hover:text-black after:w-full after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 after:scale-x-0 after:origin-right  hover:after:scale-x-[1] hover:after:origin-left'>
                                     <span className='text-xl '>Categories</span>
                                     <IoIosArrowDown className='text-gray-400 pt-1 text-[1.3rem]' />
                                 </Link>
@@ -192,12 +193,12 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <div className='group py-7'>
-                                <Link to="/shop" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black '>
+                                <Link to="/shop" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black after:w-full after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 after:scale-x-0 after:origin-right  hover:after:scale-x-[1] hover:after:origin-left'>
                                     <span className='text-xl '>Shop</span>
                                 </Link>
                             </div>
                             <div className='group py-7'>
-                                <Link to="/faq" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black '>
+                                <Link to="/faq" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black after:w-full after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 after:scale-x-0 after:origin-right  hover:after:scale-x-[1] hover:after:origin-left'>
                                     <span className='text-xl '>FAQ</span>
                                 </Link>
                             </div>
