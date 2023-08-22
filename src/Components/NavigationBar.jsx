@@ -32,7 +32,7 @@ const NavigationBar = () => {
                 <div className='mt-6  overflow-scroll'>
                     <ul className='space-y-4'>
                         <li>
-                            <a href='/' className='text-xl text-gray-700'>Hom
+                            <a href='/' className='text-xl text-gray-700'>Home
 
                             </a>
 
@@ -139,9 +139,11 @@ const NavigationBar = () => {
                             }
 
                         </li>
+
                         <li>
                             <a href='/shop' className='text-xl text-gray-700'>Shop</a>
                         </li>
+
                         <li>
                             <a href='/faq' className='text-xl text-gray-700'>FAQ</a>
                         </li>

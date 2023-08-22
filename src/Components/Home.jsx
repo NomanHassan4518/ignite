@@ -17,9 +17,7 @@ const Home = () => {
       </div>
 
       <div className=''><TopBrand /></div>
-      
 
-     
     </>
 
   )

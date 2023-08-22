@@ -4,8 +4,8 @@ import { topProduct } from './Data'
 import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch} from 'react-redux';
-import { addToCart } from '../Services/Action/Action';
+import { useDispatch } from 'react-redux';
+import { addToCart, increaseToCart } from '../Services/Action/Action';
 
 const customStyles = {
   content: {
@@ -27,18 +27,18 @@ const ModelTopProduct = () => {
   const [sizeBorder, setSizeBorder] = useState()
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  // const myData = useSelector((state) => state.cardData)
-
-  const handleCart =()=>{
-
-    const drawerData = 
-      {
-        Product:modelData,
-        quatity:quatity
-      }
+  const handleCart = () => {
+    const drawerData =
+    {
+      Product: modelData,
+      quatity: quatity
+    }
     
-
     dispatch(addToCart(drawerData))
+
+    let id = drawerData.Product.id
+    dispatch(increaseToCart(id))
+    console.log("Product Id" ,id)
   }
 
   const passData = () => {
@@ -54,6 +54,8 @@ const ModelTopProduct = () => {
 
   function closeModal() {
     setIsOpen(false);
+    setSizeBorder(0)
+
   }
 
   const add = () => {
@@ -99,15 +101,17 @@ const ModelTopProduct = () => {
                         <h3 className='font-semibold text-base lg:text-xl'>{Product.price}</h3>
                       </div>
                     </div>
+
+
+
                   </div>
+
 
                 ))
               }
             </div>
           </div>
         </div>
-
-
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
@@ -154,14 +158,13 @@ const ModelTopProduct = () => {
                     <button className='flex justify-center  items-center w-8 border-s border-gray-400' onClick={add} >+</button>
                   </div>
 
-                
 
-                  <button className={`px-8 h-12 w-full rounded text-[15px] flex justify-center items-center text-white font-semibold  hover:bg-black transition duration-500 ease-in-out ${sizeBorder===1? "bg-black cursor-pointer":"bg-[#999999] cursor-not-allowed "}`} disabled={sizeBorder!==1} onClick={handleCart}>
+
+                  <button className={`lg:px-8 h-12 w-full rounded lg:text-[15px]  text-sm flex justify-center items-center text-white font-semibold  hover:bg-black transition duration-500 ease-in-out ${sizeBorder === 1 ? "bg-black cursor-pointer" : "bg-[#999999] cursor-not-allowed "}`} disabled={sizeBorder !== 1} onClick={handleCart}>
                     Add to Cart
                   </button>
+
                 </div>
-
-
 
                 <button onClick={() => { passData() }} className='bg-black text-white my-7 font-semibold text-[16px] rounded w-full h-12'>
                   View Details

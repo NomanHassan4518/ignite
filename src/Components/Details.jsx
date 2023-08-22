@@ -3,20 +3,43 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Services/Action/Action';
 
 
 
-const Details = (state) => {
-  const [quantity, setQuatity] = useState(1)
-  const location = useLocation();
+const Details = () => {
+  const [quatity, setQuatity] = useState(1);
+  const [sizeBorder, setSizeBorder] = useState()
+  const dispatch = useDispatch();
+  const location = useLocation()
+
   let productDetail = location.state.modelData
 
+  const handleCart = () => {
+
+    const drawerData =
+    {
+      Product: productDetail,
+      quatity: quatity
+    }
+
+
+    dispatch(addToCart(drawerData))
+  }
+
   const add = () => {
-    setQuatity(quantity + 1)
+    setQuatity(quatity + 1)
   }
 
   const sub = () => {
-    setQuatity(quantity - 1)
+    setQuatity(quatity - 1)
+  }
+
+  let index = 1
+
+  const sizebutton = (index) => {
+    setSizeBorder(index)
   }
 
   return (
@@ -36,11 +59,11 @@ const Details = (state) => {
               showIndicators={false}
             >
               <div className='flex items-center justify-center'>
-                <img src={productDetail.url} alt=''/>
+                <img src={productDetail.url} alt='' />
 
               </div>
               <div className='flex items-center justify-center'>
-                <img src={productDetail.url1} alt=''/>
+                <img src={productDetail.url1} alt='' />
 
               </div>
 
@@ -58,20 +81,33 @@ const Details = (state) => {
 
           <div className='mt-6'>
             <h3 className='text-xl font-semibold '>Size</h3>
-            <button className='border-[1px] rounded border-black w-14 h-12 mt-5' style={{ backgroundImage: `url("https://un.myignite.site/assets/images/soldout.png")`, backgroundPosition: "center center" }}>9</button>
+
+            <div className='flex space-x-3 mt-5'>
+
+              <button className={`border-[1px]   uppercase rounded hover:border-black   cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center ${sizeBorder === 1 ? "border-black" : "border-gray-200"}`} onClick={() => { sizebutton(index) }}>
+                <p className='font-bold text-md'>10</p>
+              </button>
+
+
+              <button className={`border-[1px]   flex border-gray-200 hover:border-gray-700 uppercase rounded  cursor-pointer transition duration-200 ease-in-out w-14 h-11 justify-center items-center }`} style={{ backgroundImage: `url("https://un.myignite.site/assets/images/soldout.png")`, backgroundPosition: "center center" }}  >
+                <p className='font-bold text-md' >9</p>
+              </button>
+            </div>
           </div>
           <hr className='mt-9' />
 
           <div className='pe-12 my-8'>
             <div className='flex space-x-4 items-center '>
               <div className='bg-black h-9 flex rounded shadow-lg'>
-                <button className='text-2xl text-white border-e border-gray-400 flex justify-center items-center lg:w-12 w-9' onClick={sub} disabled={quantity === 1}>-</button>
-                <span className='lg:w-20 w-9 text-white text-xl font-bold border-e border-gray-400 flex items-center justify-center'>{quantity}</span>
+                <button className='text-2xl text-white border-e border-gray-400 flex justify-center items-center lg:w-12 w-9' onClick={sub} disabled={quatity === 1}>-</button>
+                <span className='lg:w-20 w-9 text-white text-xl font-bold border-e border-gray-400 flex items-center justify-center'>{quatity}</span>
                 <button className='text-2xl text-white border-e border-gray-400 flex justify-center items-center  lg:w-12 w-9' onClick={add}>+</button>
               </div>
 
               <div className=' '>
-                <button className='lg:px-8 w-[10rem] sm:w-[30rem] bg-gray-400 hover:bg-black cursor-not-allowed h-12 lg:w-80 rounded text-[15px] flex justify-center shadow-lg items-center text-white font-semibold  transition duration-500 ease-in-out '>Add to Cart</button>
+                <button className={`px-8 h-12 w-full rounded text-[15px] flex justify-center items-center text-white font-semibold  hover:bg-black transition duration-500 ease-in-out ${sizeBorder === 1 ? "bg-black cursor-pointer" : "bg-[#999999] cursor-not-allowed "}`} disabled={sizeBorder !== 1} onClick={handleCart}>
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
