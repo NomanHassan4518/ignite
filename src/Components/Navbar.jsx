@@ -8,7 +8,7 @@ import NavigationBar from './NavigationBar'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineClose } from 'react-icons/ai'
-import { removeToCart } from '../Services/Action/Action'
+import { decreseToQuantity, increaseToQuantity, removeToCart } from '../Services/Action/Action'
 
 const Navbar = () => {
     let myData = useSelector((state) => state.cardData);
@@ -17,15 +17,18 @@ const Navbar = () => {
     const [price, setPrice] = useState(null)
     let dispatch = useDispatch()
 
-    // console.log(cardProduct)
+    // console.log("Card Data", cardProduct)
+
     useEffect(() => {
         if (myData) {
             setCardProduct(myData)
         }
 
         myData.map((p) => (
-            setPrice(p.Product?.price)
+            setPrice(p.Product.price)
         ))
+
+
     }, [myData])
 
 
@@ -37,23 +40,21 @@ const Navbar = () => {
         setIsOpen(true)
     }
 
-    const add = (index, items) => {
-        let array = [...cardProduct]
-        let value = array[index].quatity
-        array[index].quatity = value + 1
-        setCardProduct(array)
+    const close = () => {
+        if (cardProduct?.length === 0) {
+            setIsOpen(false)
+        }
     }
 
-    const sub = (index) => {
-        let array = [...cardProduct]
-        let value = array[index].quatity
-        array[index].quatity = value - 1
-        setCardProduct(array)
+    const add = () => {
+        dispatch(increaseToQuantity(cardProduct))
+    }
+
+    const sub = () => {
+        dispatch(decreseToQuantity(cardProduct))
     }
 
     const remove = (index) => {
-        // let arr = cardProduct.filter((item, index) => index !== ind)
-        // setCardProduct(arr)
         dispatch(removeToCart(index))
     }
 
@@ -61,9 +62,6 @@ const Navbar = () => {
     let title = <h1 className='text-3xl font-semibold text-center'>Shopping cart</h1>
     return (
         <>
-
-
-
             <header className=' flex w-full bg-[#fff] z-10  h-24 items-center  justify-center sticky top-0'>
                 <div className='flex w-full items-center'>
 
@@ -86,13 +84,13 @@ const Navbar = () => {
                     <nav className='bg-white lg:block hidden '>
                         <div className=" flex space-x-6 items-center justify-center">
                             <div className='group py-7 '>
-                                
-                                <Link to="/" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black group-hover:scale-x-95 after:w-full after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 after:scale-x-0 after:origin-right  hover:after:scale-x-[1] hover:after:origin-left'>
+
+                                <Link to="/" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black  after:w-0 after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0    hover:after:w-full '>
                                     <span className='text-xl '>Home</span>
                                 </Link>
                             </div>
                             <div className='group py-7 '>
-                                <Link to="/shop" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal  group-hover:text-black after:w-full after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 after:scale-x-0 after:origin-right  hover:after:scale-x-[1] hover:after:origin-left'>
+                                <Link to="/shop" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal  group-hover:text-black after:w-0 after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0    hover:after:w-full '>
                                     <span className='text-xl '>Categories</span>
                                     <IoIosArrowDown className='text-gray-400 pt-1 text-[1.3rem]' />
                                 </Link>
@@ -193,12 +191,12 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <div className='group py-7'>
-                                <Link to="/shop" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black after:w-full after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 after:scale-x-0 after:origin-right  hover:after:scale-x-[1] hover:after:origin-left'>
+                                <Link to="/shop" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black after:w-0 after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0    hover:after:w-full '>
                                     <span className='text-xl '>Shop</span>
                                 </Link>
                             </div>
                             <div className='group py-7'>
-                                <Link to="/faq" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black after:w-full after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 after:scale-x-0 after:origin-right  hover:after:scale-x-[1] hover:after:origin-left'>
+                                <Link to="/faq" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black after:w-0 after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0 hover:after:w-full '>
                                     <span className='text-xl '>FAQ</span>
                                 </Link>
                             </div>
@@ -248,6 +246,7 @@ const Navbar = () => {
                 onClose={toggleDrawer}
                 direction='right'
                 className='bla bla bla'
+               
 
             >
                 <div >
@@ -258,7 +257,7 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <div className={cardProduct?.length !== 0 ? "block h-[30rem]  overflow-y-scroll" : "hidden"}>
+                    <div className={cardProduct?.length !== 0 ? "block h-[30rem] overflow-y-scroll " : "hidden"}>
 
                         {
                             cardProduct?.map((items, index) => (
@@ -286,7 +285,7 @@ const Navbar = () => {
                     </div>
 
                     <button className='flex w-full  flex-col pt-2 pb-2'>
-                        <div className='w-full bg-[#000] text-white hover:text-white rounded-md cursor-not-allowed px-2 py-3 flex items-center justify-center '>
+                        <div className={`w-full bg-[#000] text-white hover:text-white ${cardProduct?.length !== 0 ? "cursor-pointer" : 'cursor-not-allowed '} rounded-md px-2 py-3 flex items-center justify-center`} onClick={close}>
                             <span className='w-ful pe-5 md:text-[17px] font-semibold'>Proceed to Checkout</span>
                             <span className='mx-auto md:text-[17px] font-semibold '>| {cardProduct?.length !== 0 ? price : "SAR 0.00"}</span>
                         </div>

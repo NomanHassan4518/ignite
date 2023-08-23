@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addToCart} from '../Services/Action/Action';
+import { addToCart } from '../Services/Action/Action';
 
 const customStyles = {
   content: {
@@ -33,7 +33,7 @@ const ModelTopProduct = () => {
       Product: modelData,
       quatity: quatity
     }
-    
+
     dispatch(addToCart(drawerData))
 
   }
@@ -52,7 +52,7 @@ const ModelTopProduct = () => {
   function closeModal() {
     setIsOpen(false);
     setSizeBorder(0)
-
+    setQuatity((quatity - quatity) + 1)
   }
 
   const add = () => {
@@ -99,7 +99,6 @@ const ModelTopProduct = () => {
                         <h3 className='font-semibold text-base lg:text-xl'>{Product.price}</h3>
                       </div>
                     </div>
-
 
 
                   </div>

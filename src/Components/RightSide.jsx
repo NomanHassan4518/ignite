@@ -66,6 +66,8 @@ const RightSide = () => {
 
   function closeModal() {
     setIsOpen(false);
+    setSizeBorder(0)
+    setQuatity((quatity - quatity)+1)
   }
 
   const [isOpen, setisOpen] = React.useState(false)
@@ -126,7 +128,8 @@ const RightSide = () => {
             {
               topProduct.map((product) => (
                 <div className="col-span-6 sm:col-span-4 lg:col-span-3 mb-6" onClick={() => { handClick(product) }}>
-                  <div className="flex flex-col box-border lg:h-[20rem]  justify-center rounded-md cursor-pointer pb-3 items-start hover:shadow-lg  px-3 duration-500 ease-in-out">
+                  <div className="flex flex-col box-border lg:h-[20rem]  justify-center rounded-md cursor-pointer pb-3 items-start hover:shadow-lg  px-3 duration-500 hover:translate-y-1
+                  ease-in-out">
                     <div className='lg:px-4  lg:mb-8 mt-6'>
                       <img src={product.url} alt="" className='w-full lg:w-[85%]' />
                     </div>

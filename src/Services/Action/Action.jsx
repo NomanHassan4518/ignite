@@ -1,4 +1,4 @@
-import { addCart, removeCart} from "../Constant"
+import { addCart, removeCart , increaseQuantity, decreaseQuantity} from "../Constant"
 
 export const addToCart = (drawerData) => {
     return {
@@ -14,6 +14,27 @@ export const removeToCart = (index)=>{
   }
 }
 
+
+export const increaseToQuantity = (cardProduct)=>{
+  return{
+    type:increaseQuantity,
+    payload:cardProduct
+  }
+}
+
+export const decreseToQuantity = (cardProduct)=>{
+  return {
+    type:decreaseQuantity,
+    payload:cardProduct
+  }
+}
+
+export const calculate = (cardProduct)=>{
+  return{
+    type:calculate,
+    payload:cardProduct
+  }
+}
 
 
 

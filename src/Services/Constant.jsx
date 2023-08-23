@@ -1,4 +1,5 @@
 export const addCart= "Add To Cart"
 export const removeCart = "Remove Cart Item"
-export const increaseCart = "Increase Cart Item"
-export const update = "Update Quantity"
+export const increaseQuantity = "Increase Cart Items Quantity"
+export const decreaseQuantity = "Decrease Cart Items Quanitity"
+export const totalPrice = "Total Price"
