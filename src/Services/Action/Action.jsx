@@ -15,26 +15,20 @@ export const removeToCart = (index)=>{
 }
 
 
-export const increaseToQuantity = (cardProduct)=>{
+export const increaseToQuantity = ( index)=>{
   return{
     type:increaseQuantity,
-    payload:cardProduct
+    payload: index
   }
 }
 
-export const decreseToQuantity = (cardProduct)=>{
+export const decreseToQuantity = (index)=>{
   return {
     type:decreaseQuantity,
-    payload:cardProduct
+    payload:index
   }
 }
 
-export const calculate = (cardProduct)=>{
-  return{
-    type:calculate,
-    payload:cardProduct
-  }
-}
 
 
 

@@ -8,27 +8,21 @@ import NavigationBar from './NavigationBar'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineClose } from 'react-icons/ai'
-import { decreseToQuantity, increaseToQuantity, removeToCart } from '../Services/Action/Action'
+import { removeToCart, increaseToQuantity, decreseToQuantity } from '../Services/Action/Action'
 
 const Navbar = () => {
     let myData = useSelector((state) => state.cardData);
+    let totalPrice = useSelector((state => state.totalPrice))
+    let numberOfItems = useSelector(state =>state.totalItems)
     const [isOpen, setIsOpen] = useState(false)
     const [cardProduct, setCardProduct] = useState(null);
-    const [price, setPrice] = useState(null)
     let dispatch = useDispatch()
 
-    // console.log("Card Data", cardProduct)
-
+    let price = totalPrice.toFixed(2)
     useEffect(() => {
         if (myData) {
             setCardProduct(myData)
         }
-
-        myData.map((p) => (
-            setPrice(p.Product.price)
-        ))
-
-
     }, [myData])
 
 
@@ -46,12 +40,12 @@ const Navbar = () => {
         }
     }
 
-    const add = () => {
-        dispatch(increaseToQuantity(cardProduct))
+    const add = (index) => {
+        dispatch(increaseToQuantity(index))
     }
 
-    const sub = () => {
-        dispatch(decreseToQuantity(cardProduct))
+    const sub = (index) => {
+        dispatch(decreseToQuantity(index))
     }
 
     const remove = (index) => {
@@ -70,7 +64,7 @@ const Navbar = () => {
                     </div>
                     <div>
                         <Link to='/'>
-                            <div className=' px-10 py-8'>
+                            <div className=' px-10  py-8'>
                                 <img src="https://un.myignite.site/_next/image?url=https%3A%2F%2Fignitestorage.blob.core.windows.net%2Figniteadmin-prod%2Fuploads%2Fbusiness_logos%2F1673962751_ezgif.com-gif-maker.png&w=64&q=75" style={{ height: "60px", width: "60px" }} alt="" />
                             </div>
                         </Link>
@@ -222,7 +216,7 @@ const Navbar = () => {
                                 <button type="button" className="relative inline-flex items-center p-3 text-sm font-medium text-center text-black  focus:outline-none focus:ring-0 dark:bg-none  dark:focus:ring-0" onClick={drawweOpen}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 20 20" className="md:w-4 xl:w-5 md:h-4 xl:h-5"><path d="M5,4H19a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4ZM2,5A3,3,0,0,1,5,2H19a3,3,0,0,1,3,3V19a3,3,0,0,1-3,3H5a3,3,0,0,1-3-3Zm10,7C9.239,12,7,9.314,7,6H9c0,2.566,1.669,4,3,4s3-1.434,3-4h2C17,9.314,14.761,12,12,12Z" transform="translate(-2 -2)" fill="currentColor" fillRule="evenodd"></path></svg>
                                     <span className="sr-only">Notifications</span>
-                                    <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-black border-2 border-white rounded-full -top-[0.1rem] -right-[0.2rem] dark:border-gray-900" >{cardProduct?.length}</div>
+                                    <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-black border-2 border-white rounded-full -top-[0.1rem] -right-[0.2rem] dark:border-gray-900" >{numberOfItems}</div>
                                 </button>
 
                             </div>
@@ -246,7 +240,7 @@ const Navbar = () => {
                 onClose={toggleDrawer}
                 direction='right'
                 className='bla bla bla'
-               
+
 
             >
                 <div >
@@ -263,20 +257,20 @@ const Navbar = () => {
                             cardProduct?.map((items, index) => (
                                 <div className='flex  justify-between items-center mt-12'>
                                     <div className='group cursor-pointer relative' key={index}>
-                                        <img src={items.Product?.url} alt="" className='w-[160px] h-28' />
-                                        <div className='absolute top-0 bg-[#00000036] box-border h-full w-full left-[-190%] group-hover:left-0  flex items-center justify-center text-w transition  duration-[5000ms] ease-in-out rounded-lg' onClick={() => { remove(index) }}>
+                                        <img src={items.Product?.url} alt="" className='w-[260px] h-28' />
+                                        <div className='absolute top-0 bg-[#00000036] box-border h-full w-full left-[-190%] group-hover:left-0  flex items-center justify-center text-w transition-all duration-1000   ease-in-out rounded-lg' onClick={() => { remove(index) }}>
                                             <AiOutlineClose className='text-white text-[20px]' />
                                         </div>
                                     </div>
 
                                     <div className='ml-2'>
                                         <p className='h-[20px] overflow-hidden'>{items.Product?.title} </p>
-                                        <p className='mt-1 text-gray-400'>Unit Price: {items.Product?.price}</p>
+                                        <p className='mt-1 text-gray-400'>Unit Price: SAR {items.Product?.price}</p>
 
                                         <div className="flex bg-black text-white font-bold text-lg mt-5 h-10 rounded-md">
-                                            <button className='flex justify-center items-center w-9 lg:w-12 border-e border-gray-400 cursor-pointer' onClick={() => { sub(index, items) }}>-</button>
+                                            <button className='flex justify-center items-center w-9 lg:w-12 border-e border-gray-400 cursor-pointer' onClick={() => { sub(index) }}>-</button>
                                             <button className='w-20'> {items.quatity}</button>
-                                            <button className='flex justify-center  items-center lg:w-12 w-9 border-s border-gray-400' onClick={() => { add(index, items) }}>+</button>
+                                            <button className='flex justify-center items-center w-9 lg:w-12 border-s border-gray-400 cursor-pointer' onClick={() => { add(index) }}>+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -287,7 +281,7 @@ const Navbar = () => {
                     <button className='flex w-full  flex-col pt-2 pb-2'>
                         <div className={`w-full bg-[#000] text-white hover:text-white ${cardProduct?.length !== 0 ? "cursor-pointer" : 'cursor-not-allowed '} rounded-md px-2 py-3 flex items-center justify-center`} onClick={close}>
                             <span className='w-ful pe-5 md:text-[17px] font-semibold'>Proceed to Checkout</span>
-                            <span className='mx-auto md:text-[17px] font-semibold '>| {cardProduct?.length !== 0 ? price : "SAR 0.00"}</span>
+                            <span className='mx-auto md:text-[17px] font-semibold '>| {cardProduct?.length !== 0 ? `SAR ${price}` : "SAR 0.00"}</span>
                         </div>
                     </button>
                 </div>
