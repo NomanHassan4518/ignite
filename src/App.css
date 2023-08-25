@@ -77,6 +77,11 @@
   width: 450px !important;
 }
 
+:where(.css-dev-only-do-not-override-fpg3f5).ant-drawer .ant-drawer-body {
+  padding: 0px;
+
+
+}
 @media screen and (min-width: 320px) and (max-width: 640px) {
   .block input {
     text-align: center;

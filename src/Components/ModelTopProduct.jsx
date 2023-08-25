@@ -38,6 +38,7 @@ const ModelTopProduct = () => {
 
   }
 
+
   const passData = () => {
     navigate("/detail", { state: { modelData: modelData } })
   }

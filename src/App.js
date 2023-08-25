@@ -14,6 +14,7 @@ import Privacy from "./Components/Privacy";
 import Terms from "./Components/Terms";
 import Returns from "./Components/Returns";
 import Navbar from "./Components/Navbar";
+import CheckOut from "./Components/CheckOut";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />}></Route>
             <Route path="/terms" element={<Terms />}></Route>
             <Route path="/returns" element={<Returns />}></Route>
+            <Route path="/checkout" element= {<CheckOut/>}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>
