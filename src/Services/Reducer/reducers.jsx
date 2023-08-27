@@ -46,25 +46,6 @@ export default cardItem
 
 
 
-const calculateTotal = (itemAdd) => {
-    let finalPrice = 0
-    itemAdd.map((item) => (
-        finalPrice = finalPrice + (item.Product.price * item.quatity)
-
-    ))
-
-    return finalPrice
-}
-
-
-const totalItems = (itemAdd) => {
-    let totalItem = 0
-    itemAdd.map((item) => (
-        totalItem = totalItem + item.quatity
-    ))
-    return totalItem
-}
-
 
 const addItemsWithQuantity = (state, action) => {
     const cartItemIndex = state.cardData.findIndex(
@@ -130,6 +111,28 @@ const removeProduct = (state, action) => {
     return updateCart
 
 }
+
+
+
+const calculateTotal = (itemAdd) => {
+    let finalPrice = 0
+    itemAdd.map((item) => (
+        finalPrice = finalPrice + (item.Product.price * item.quatity)
+
+    ))
+
+    return finalPrice
+}
+
+
+const totalItems = (itemAdd) => {
+    let totalItem = 0
+    itemAdd.map((item) => (
+        totalItem = totalItem + item.quatity
+    ))
+    return totalItem
+}
+
 
 const generateFinalState = (state, itemAdd) => {
     return {

@@ -68,9 +68,10 @@ const Navbar = () => {
                     <div className='hidden md:block lg:hidden pl-10'>
                         <NavigationBar />
                     </div>
+                    
                     <div>
                         <Link to='/'>
-                            <div className=' px-10  py-8'>
+                            <div className=' px-10  py-8 '>
                                 <img src="https://un.myignite.site/_next/image?url=https%3A%2F%2Fignitestorage.blob.core.windows.net%2Figniteadmin-prod%2Fuploads%2Fbusiness_logos%2F1673962751_ezgif.com-gif-maker.png&w=64&q=75" style={{ height: "60px", width: "60px" }} alt="" />
                             </div>
                         </Link>
@@ -282,7 +283,7 @@ const Navbar = () => {
                                                 </div>
 
                                                 <div className='h-10 flex justify-center items-center mx-4'>
-                                                    <p className='font-bold text-md'>SAR : {items.Product.price}</p>
+                                                    <p className='font-bold text-md'>SAR : {(items.Product.price * items.quatity).toFixed(2)}</p>
                                                 </div>
                                             </div>
                                         </div>

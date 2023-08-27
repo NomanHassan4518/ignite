@@ -18,7 +18,6 @@ const DeliveryOption = () => {
 
     const radioButton = (address) => {
         setCheckRedio(address)
-
     }
 
     const shippingAddress = ["Pickup", "Delivery"]
@@ -26,8 +25,8 @@ const DeliveryOption = () => {
 
 
     return (
-        <div>
-            <div className='flex flex-col w-full'>
+        <div className='md:px-4'>
+            <div className='flex flex-col w-full '>
                 <h1 className='text-lg font-bold'>Delivery Options</h1>
 
 

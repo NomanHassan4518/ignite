@@ -4,11 +4,11 @@ import Order from './Order'
 
 const CheckOut = () => {
     return (
-        <div className='px-14 py-12 w-full mx-auto grid grid-cols-12'>
-            <div className='col-span-7'>
+        <div className='lg:px-14 px-4 py-12 w-full mx-auto md:grid md:grid-cols-12 sm:flex sm:flex-col'>
+            <div className='md:col-span-7'>
                 <DeliveryOption />
             </div>
-            <div className="col-span-5 ">
+            <div className="md:col-span-5 ">
                 <Order />
             </div>
         </div>
