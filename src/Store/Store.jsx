@@ -1,6 +1,22 @@
-import {createStore} from 'redux'
 import cardItem from '../Services/Reducer/reducers'
+import storage  from 'redux-persist/lib/storage';
+import  { persistReducer } from 'redux-persist';
+import {  createStore } from '@reduxjs/toolkit';
+import persistStore from 'redux-persist/es/persistStore';
 
-const store = createStore(cardItem);
+const persistConfig={
+    key:"root",
+    version:1,
+    storage
+}
 
-export default store
+
+const persistedReducer = persistReducer( persistConfig ,cardItem)
+
+const store = createStore(
+    persistedReducer
+);
+
+const persistor = persistStore(store)
+
+export  {store , persistor}

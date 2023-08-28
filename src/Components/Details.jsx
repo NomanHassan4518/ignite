@@ -14,7 +14,8 @@ const Details = () => {
   const dispatch = useDispatch();
   const location = useLocation()
 
-  let productDetail = location.state.modelData
+  let productDetail = location.state.modelData.modelData
+  let ind = location.state.modelData.indexOfItem
 
   const handleCart = () => {
 
@@ -42,6 +43,7 @@ const Details = () => {
     setSizeBorder(index)
   }
 
+
   return (
     <div className='md:px-8 mt-8'>
 
@@ -58,13 +60,12 @@ const Details = () => {
               showStatus={false}
               showIndicators={false}
             >
-              <div className='flex items-center justify-center'>
-                <img src={productDetail.url} alt='' />
+              <div className='flex items-center justify-center w-80 h-56'>
+                <img src={productDetail?.gallery[ind].original} alt='' />
 
               </div>
-              <div className='flex items-center justify-center'>
-                <img src={productDetail.url1} alt='' />
-
+              <div className='flex items-center justify-center w-80 h-56'>
+                <img src={productDetail?.gallery[ind].thumbnail} alt='' />
               </div>
 
             </Carousel>
@@ -74,9 +75,9 @@ const Details = () => {
         </div>
 
         <div className='col-span-4'>
-          <h3 className='text-2xl font-bold mb-6'>{productDetail.title}</h3>
-          <p className='text-base text-gray-500 leading-8'>{productDetail.desc}</p>
-          <h3 className='text-2xl font-bold mt-6 mb-5'>{productDetail.price}</h3>
+          <h3 className='text-2xl font-bold mb-6'>{productDetail?.name}</h3>
+          <p className='text-base text-gray-500 leading-8'>{productDetail?.description}</p>
+          <h3 className='text-2xl font-bold mt-6 mb-5'>{productDetail?.price}</h3>
           <hr className='mt-9' />
 
           <div className='mt-6'>

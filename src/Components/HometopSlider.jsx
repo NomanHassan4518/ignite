@@ -24,6 +24,8 @@ const HometopSlider = () => {
   };
   const autoPlaySpeed = 2000
 
+let categories =  JSON.parse( localStorage.getItem('Categories'))
+
   return (
     <div className='mt-6 lg:mx-4 grid grid-cols-1 z-10 mb-12 overflow-hidden  gap-1'>
       <Carousel responsive={responsive}
@@ -32,16 +34,16 @@ const HometopSlider = () => {
         autoPlaySpeed={autoPlaySpeed}
       >
         {
-          sliderData.map((a) => (
-            <div className='mx-6'>
+          categories.map((item , index) => (
+            <div className='mx-6'key={index}>
             <a className="flex justify-between h-[5rem] items-center bg-gray-100 rounded-md px-5 py-3 hover:bg-gray-200" href='/'>
               <div className="flex items-center">
                 <span>
 
-                  <img src={a.url} alt="" className='rounded-full object-cover bg-gray-300' />
+                  <img src={item.image===null ?"https://apna.ignitehq.vercel.app/_next/image?url=%2Ficons%2Fignite-default.png&w=64&q=75":item.image} alt="" className='rounded-full bg-gray-300 w-16 h-16' />
 
                 </span>
-                <h3 className='mx-6 capitalize '>{a.title}</h3>
+                <h3 className='mx-6 capitalize '>{item.name}</h3>
               </div>
             </a>
 

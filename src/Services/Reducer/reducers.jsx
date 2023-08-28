@@ -69,6 +69,7 @@ const addItemsWithQuantity = (state, action) => {
 
 const incresequantity = (state, action) => {
     const cartIndex = state.cardData.findIndex((item, index) => index === action.payload)
+    console.log(action.payload , "payload" , cartIndex , "cartIndex")
     let increase = [];
     if (cartIndex > -1) {
         let value = state.cardData[cartIndex].quatity;

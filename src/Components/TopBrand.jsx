@@ -23,7 +23,7 @@ const TopBrand = () => {
         }
     };
 
-
+ let brands = JSON.parse(localStorage.getItem('Brands'))
 
     const autoPlaySpeed = 2000
     return (
@@ -40,16 +40,18 @@ const TopBrand = () => {
                     removeArrowOnDeviceType={["tablet", "mobile"]}
                 >
                     {
-                        topBrand.map((a) => (
-                            <a href='/' className='flex flex-col items-center mt-9 lg:h-[18rem] justify-center '>
+                        brands.map((item , index) => (
+                           <div key={index}>
+                             <a href='/' className='flex flex-col items-center mt-9 lg:h-[18rem] justify-center '>
                                 <span className='sm:w-[191px] w-[50px] h-50px rounded-md'>
-                                    <img src={a.url} alt="" />
+                                    <img src={item.image} alt="" />
                                 </span>
 
                                 <span className='flex flex-col mt-[1rem] items-end justify-center'>
-                                    <p className='text-xs sm:text-xl font-semibold mb-3'>{a.title}</p>
+                                    <p className='text-xs sm:text-xl font-semibold mb-3'>{item.name}</p>
                                 </span>
                             </a>
+                           </div>
                         ))
                     }
                 </Carousel>

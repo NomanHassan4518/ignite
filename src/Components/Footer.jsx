@@ -75,7 +75,7 @@ const Footer = () => {
                 <span className="text-xs lg:text-sm text-gray-500 sm:text-center dark:text-gray-400 flex flex-wrap w-full justify-center lg:justify-start items-center mt-1">Copyright © 2023  <Link to="/" className="font-semibold text-black">Urban Necessities Riyadh</Link>. All Rights Reserved.
                 </span>
                 <span className='mt-3 text-xl lg:w-52'>
-                    Powered by <a href="https://ignite.tech" target='_blank' className='font-bold text-black'>Ignite</a>
+                    Powered by <Link to="https://ignite.tech" target='_blank' className='font-bold text-black'>Ignite</Link>
                 </span>
             </div>
         </footer>

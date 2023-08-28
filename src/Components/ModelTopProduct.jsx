@@ -23,6 +23,7 @@ const customStyles = {
 const ModelTopProduct = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modelData, setModelData] = useState("")
+  const [indexOfItem, setIndexOfItem] = useState(null)
   const [quatity, setQuatity] = useState(1);
   const [sizeBorder, setSizeBorder] = useState()
   const navigate = useNavigate()
@@ -40,15 +41,16 @@ const ModelTopProduct = () => {
 
 
   const passData = () => {
-    navigate("/detail", { state: { modelData: modelData } })
+    navigate("/detail", { state: { modelData: { modelData, indexOfItem } } })
   }
 
-  function handleClick(Product) {
+  function handleClick(Product, index) {
     setIsOpen(true);
     setModelData(Product);
-
+    setIndexOfItem(index)
   }
 
+  console.log(modelData);
 
   function closeModal() {
     setIsOpen(false);
@@ -70,6 +72,8 @@ const ModelTopProduct = () => {
     setSizeBorder(index)
   }
 
+  let Products = JSON.parse(localStorage.getItem('Products'))
+  let items = Products.slice(0, 4)
 
   return (
     <>
@@ -85,19 +89,19 @@ const ModelTopProduct = () => {
             <div className='grid grid-cols-12 gap-4'>
 
               {
-                topProduct.map((Product) => (
+                items.map((Product, index) => (
 
-                  <div className='col-span-12 sm:col-span-6 mx-2' key={Product.id} onClick={() => { handleClick(Product) }}>
+                  <div className='col-span-12 sm:col-span-6 mx-2' key={Product.id} onClick={() => { handleClick(Product, index) }}>
                     <div className="group rounded-md h-32 lg:h-[13rem] flex-row box-border flex overflow-hidden pe-3 items-center cursor-pointer bg-[#f9f9f9] transition-transform ease-linear ">
                       <div className='flex flex-shrink mx-5 w-72'>
-                        <img src={Product.url} alt="" className='group-hover:scale-105 transition-transform ease-in-out duration-500' />
+                        <img src={Product.image.original} alt="" className='group-hover:scale-105 transition-transform ease-in-out duration-500' />
                       </div>
                       <div className='w-full  overflow-hidden lg:mx-5 mt-4'>
-                        <h3 className='font-semibold text-base lg:text-xl overflow-hidden h-7' >{Product.title}</h3>
+                        <h3 className='font-semibold text-base lg:text-xl overflow-hidden h-7' >{Product.name}</h3>
                         <p className='text-sm lg:text-base text-gray-400 lg:my-2 overflow-y-hidden overflow-x-hidden w-[80%] h-[25px] overflow-hidden '>
-                          <div>{Product.desc}</div>
+                          <div>{Product.description}</div>
                         </p>
-                        <h3 className='font-semibold text-base lg:text-xl'>{Product.price}</h3>
+                        <h3 className='font-semibold text-base lg:text-xl'>SAR {Product.price}  </h3>
                       </div>
                     </div>
 
@@ -110,7 +114,7 @@ const ModelTopProduct = () => {
             </div>
           </div>
         </div>
-        
+
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
@@ -124,13 +128,13 @@ const ModelTopProduct = () => {
             <div className='lg:grid lg:grid-cols-12 flex flex-col'>
 
               <div className='w-full lg:col-span-6  flex items-center justify-center h-full overflow-hidden'>
-                <img src={modelData.url} alt="" className='lg:w-[88%]' />
+                <img src={modelData.image?.original} alt="" className='lg:w-[88%]' />
               </div>
 
 
               <div className='lg:col-span-6 '>
-                <h3 className='font-semibold text-3xl mb-3 overflow-hidden h-9'>{modelData.title}</h3>
-                <p className='text-md text-gray-500 leading-7'>{modelData.desc}</p>
+                <h3 className='font-semibold text-3xl mb-3 overflow-hidden h-9'>{modelData.name}</h3>
+                <p className='text-md text-gray-500 leading-7'>{modelData.description}</p>
                 <h1 className='font-semibold text-3xl mb-3  h-7 my-5'>{modelData.price}</h1>
 
                 <h1 className='text-lg font-semibold mt-9 mb-5'>Size</h1>
@@ -165,7 +169,7 @@ const ModelTopProduct = () => {
 
                 </div>
 
-                <button onClick={() => { passData() }} className='bg-black text-white my-7 font-semibold text-[16px] rounded w-full h-12'>
+                <button onClick={() => { passData(indexOfItem) }} className='bg-black text-white my-7 font-semibold text-[16px] rounded w-full h-12'>
                   View Details
                 </button>
               </div>

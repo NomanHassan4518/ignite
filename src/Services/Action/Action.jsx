@@ -19,6 +19,7 @@ export const increaseToQuantity = ( index)=>{
   return{
     type:increaseQuantity,
     payload: index
+    
   }
 }
 

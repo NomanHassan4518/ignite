@@ -24,8 +24,8 @@ const SideBar = () => {
                     <div className="grid grid-cols-3 gap-3">
                       
 {
-                           sidebarData.map((a) => (
-                                <div>
+                           sidebarData.map((a , index) => (
+                                <div key={index}>
                                     <span className='cursor-pointer inline-flex justify-center items-center border rounded border-gray-300 p-2 mb-2 transition duration-200 ease-in-out text-sm uppercase font-semibold w-full hover:border-black' >
                                         <a href='/' >{a.data}</a>
                                     </span>

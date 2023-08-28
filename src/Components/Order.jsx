@@ -1,4 +1,3 @@
-import Item from 'antd/es/list/Item'
 import React from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -34,14 +33,13 @@ const Order = () => {
     setCheck("cash")
   }
 
-
+ 
   let shippingFee = 0
-
+ 
   productData.map((item => {
     return shippingFee += item.quatity * 30
   }))
 
-  console.log(shippingFee)
   return (
     <div className='mt-6 lg:ml-12 '>
       <h1 className='text-2xl font-bold mb-6'>Your Order</h1>
@@ -55,11 +53,11 @@ const Order = () => {
         {
           productData.map((Item, index) => (
             <div className='flex justify-between mt-8  border-b border-gray-200'>
-              <div className="flex w-[70%]">
-                <div className='w-20 h-20'>
-                  <img src={Item.Product.url} alt="" />
+              <div className="flex w-[70%] items-center">
+                <div className='w-20 h-17'>
+                  <img src={Item.Product.image.original} alt="" />
                 </div>
-                <p className='lg:ml-4 lg:h-7 lg:w-60 overflow-hidden'>{Item.Product.title}</p>
+                <p className='lg:ml-4 lg:h-7 lg:w-60 overflow-hidden'>{Item.Product.name}</p>
               </div>
 
               <div>

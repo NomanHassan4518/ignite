@@ -48,13 +48,16 @@ const Navbar = () => {
 
     const add = (index) => {
         dispatch(increaseToQuantity(index))
+        console.log("Index" , index)
+
     }
 
     const sub = (index) => {
         dispatch(decreseToQuantity(index))
+        console.log("Index" , index)
     }
 
-    const remove = (index) => {
+    const remove = (index) => { 
         dispatch(removeToCart(index))
     }
 
@@ -263,16 +266,16 @@ const Navbar = () => {
 
                             {
                                 cardProduct?.map((items, index) => (
-                                    <div className='flex justify-around mt-12'>
-                                        <div className='group cursor-pointer relative' key={index}>
-                                            <img src={items.Product?.url} alt="" className='w-[120px] h-28' />
-                                            <div className='absolute top-0 bg-[#00000036] box-border h-full w-full left-[-190%] group-hover:left-0  flex items-center justify-center text-w transition-all duration-1000   ease-in-out rounded-lg' onClick={() => { remove(index) }}>
-                                                <AiOutlineClose className='text-white text-[20px]' />
+                                    <div className='flex justify-around mt-12' key={index}>
+                                        <div className='group cursor-pointer relative'>
+                                            <img src={items.Product?.image.original} alt="" className='p-[6px] h-28' />
+                                            <div className='absolute top-0 bg-black bg-opacity-30 box-border h-full w-full scale-0 group-hover:scale-90  flex items-center justify-center text-w transition-all  duration-500   ease-in-out rounded-lg' onClick={() => { remove(index) }}>
+                                                <AiOutlineClose className='text-black bg-white rounded-full text-[15px]'  />
                                             </div>
                                         </div>
 
                                         <div className='ml-4'>
-                                            <p className='h-[20px] overflow-hidden'>{items.Product?.title} </p>
+                                            <p className='h-[20px] overflow-hidden'>{items.Product?.name} </p>
                                             <p className='mt-1 text-gray-400'>Unit Price: SAR {items.Product?.price}</p>
 
                                             <div className="flex justify-between w-full items-center mt-5">

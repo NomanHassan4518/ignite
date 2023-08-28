@@ -80,8 +80,8 @@ const MobileShopingCart = () => {
 
             {
               cardProduct?.map((items, index) => (
-                <div className='flex  justify-between items-center mt-12'>
-                  <div className='group cursor-pointer relative' key={index}>
+                <div className='flex  justify-between items-center mt-12'  key={index}>
+                  <div className='group cursor-pointer relative'>
                     <img src={items.Product?.url} alt="" className='w-[160px] h-28' />
                     <div className='absolute top-0 bg-[#00000036] box-border h-full w-full left-[-190%] group-hover:left-0  flex items-center justify-center text-w transition  duration-[5000ms] ease-in-out rounded-lg' onClick={() => { remove(index) }}>
                       <AiOutlineClose className='text-white text-[20px]' />

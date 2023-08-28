@@ -25,13 +25,14 @@ const customStyles = {
 const RightSide = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modelData, setModelData] = useState("")
+  const [indexOfItem, setIndexOfItem] = useState(null)
   const [quatity, setQuatity] = useState(1)
   const [sizeBorder, setSizeBorder] = useState()
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const passData = (title) => {
-    navigate("/detail", { state: { modelData: modelData } })
+  const passData = (indexOfItem) => {
+    navigate("/detail", { state: { modelData: {modelData,indexOfItem }} })
   }
 
   const handleCart =()=>{
@@ -53,6 +54,7 @@ const RightSide = () => {
   const handClick = (product) => {
     setIsOpen(true)
     setModelData(product)
+    setIndexOfItem(index)
   }
 
   const add = () => {
@@ -82,6 +84,7 @@ const RightSide = () => {
     setSizeBorder(index)
   }
 
+  let Products = JSON.parse(localStorage.getItem('Products'))
 
   let title = <h1 className='text-center text-3xl font-bold'>Filters</h1>
   return (
@@ -92,7 +95,7 @@ const RightSide = () => {
           <div className="grid grid-cols-12">
             <div className="col-span-9"></div>
             <div className='col-span-3 flex justify-end'>
-              <p className='text-lg text-gray-500'>{topProduct.length} items</p>
+              <p className='text-lg text-gray-500'>{Products.length} items</p>
             </div>
           </div>
 
@@ -126,20 +129,21 @@ const RightSide = () => {
           </div>
           <div className="grid grid-cols-12 space-x-4">
             {
-              topProduct.map((product) => (
+              Products.map((product) => (
                 <div className="col-span-6 sm:col-span-4 lg:col-span-3 mb-6" onClick={() => { handClick(product) }}>
-                  <div className="flex flex-col box-border lg:h-[20rem]  justify-center rounded-md cursor-pointer pb-3 items-start hover:shadow-lg  px-3 duration-500 hover:translate-y-1
+                  <div className="flex flex-col box-border lg:h-[26rem] lg:w-[13rem]  justify-center rounded-md cursor-pointer pb-3 items-start hover:shadow-lg  px-3 duration-500 hover:translate-y-1
                   ease-in-out">
-                    <div className='lg:px-4  lg:mb-8 mt-6'>
-                      <img src={product.url} alt="" className='w-full lg:w-[85%]' />
+                    <div className=' lg:mb-3 mt-4 w-full'>
+                      <img src={product.image.original} alt="" className='w-full lg:w-[100%] object-scale-down' />
                     </div>
 
-                    <div className='lg:py-5 lg:mt-[3rem] mt-5'>
-                      <h1 className='h-6 lg:h-8 text-base lg:text-lg overflow-hidden font-semibold'>{product.title}</h1>
-                      <p className='h-7 overflow-hidden'>{product.desc}</p>
-                      <h1 className='text-lg font-semibold'>{product.price}</h1>
+                    <div className='lg:py-3 lg:mt-[3rem] mt-5 flex flex-col items-center w-full'>
+                      <h1 className='h-6 lg:h- text-base lg:text-lg overflow-hidden font-semibold'>{product.name}</h1>
+                      <p className='h-7 overflow-hidden'>{product.description}</p>
+                      <h1 className='text-lg font-semibold'>SAR {product.price.toFixed(2)}</h1>
                     </div>
                   </div>
+                
                 </div>
               ))
             }
@@ -161,13 +165,13 @@ const RightSide = () => {
 
 
               <div className='w-full lg:col-span-6  flex items-center justify-center h-full overflow-hidden'>
-                <img src={modelData.url} alt="" className='lg:w-[88%]' />
+                <img src={modelData.image?.original} alt="" className='lg:w-[88%]' />
               </div>
 
 
               <div className='lg:col-span-6 mt-5'>
-                <h3 className='font-semibold text-3xl mb-3 overflow-hidden h-9'>{modelData.title}</h3>
-                <p className='text-md text-gray-500 leading-7'>{modelData.desc}</p>
+                <h3 className='font-semibold text-3xl mb-3 overflow-hidden h-9'>{modelData.name}</h3>
+                <p className='text-md text-gray-500 leading-7'>{modelData.description}</p>
                 <h1 className='font-semibold text-3xl mb-3  h-7 my-5'>{modelData.price}</h1>
 
                 <h1 className='text-lg font-semibold mt-9 mb-5'>Size</h1>
@@ -199,7 +203,7 @@ const RightSide = () => {
                     Add to Cart
                   </button>
                 </div>
-                <button onClick={() => { passData(modelData.title) }} className='bg-black text-white my-7 font-semibold text-[16px] rounded w-full h-12'>
+                <button onClick={() => { passData(indexOfItem) }} className='bg-black text-white my-7 font-semibold text-[16px] rounded w-full h-12'>
                   View Details
                 </button>
               </div>
