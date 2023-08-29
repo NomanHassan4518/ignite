@@ -14,8 +14,11 @@ const Details = () => {
   const dispatch = useDispatch();
   const location = useLocation()
 
+
   let productDetail = location.state.modelData.modelData
   let ind = location.state.modelData.indexOfItem
+
+  console.log(productDetail);
 
   const handleCart = () => {
 
@@ -61,12 +64,12 @@ const Details = () => {
               showIndicators={false}
             >
               <div className='flex items-center justify-center w-80 h-56'>
-                <img src={productDetail?.gallery[ind].original} alt='' />
+                <img src={productDetail?.gallery[ind]?.original} alt='' />
 
               </div>
-              <div className='flex items-center justify-center w-80 h-56'>
+              {/* <div className='flex items-center justify-center w-80 h-56'>
                 <img src={productDetail?.gallery[ind].thumbnail} alt='' />
-              </div>
+              </div> */}
 
             </Carousel>
 

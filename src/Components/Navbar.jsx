@@ -61,7 +61,8 @@ const Navbar = () => {
         dispatch(removeToCart(index))
     }
 
-
+    let category = JSON.parse(localStorage.getItem('Categories')
+    )
     let title = <h1 className='text-3xl font-semibold text-center'>Shopping cart</h1>
     return (
         <>
@@ -98,100 +99,20 @@ const Navbar = () => {
                                     <span className='text-xl '>Categories</span>
                                     <IoIosArrowDown className='text-gray-400 pt-1 text-[1.3rem]' />
                                 </Link>
-                                <div className="menu shadow-inherit z-50 absolute start-20 mt-6 opacity-0 group-hover:opacity-100  invisible group-hover:visible" >
-                                    <div className="grid grid-cols-4 z-50">
-                                        <ul className='bg-[#f9f9f9] pb-7 pt-6'>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>New Balance</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>Air Jordan</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>Adidas</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>Nike</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>Puma</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>Reebok</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>Asics</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>Under Armour</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>Fila</a>
-                                            </li>
-                                        </ul>
-                                        <ul className='bg-[#f1f1f1] pb-7 pt-6'>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Marc Jacobs</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Timberland</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Converse</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Sperry</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Vans</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Yeezy</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Zero Lo</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>SRGN Custom</a>
-                                            </li>
-                                        </ul>
-                                        <ul className='bg-[#f9f9f9] pb-7 pt-6'>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>LOUIS VUITTON</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>NBA</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Hoodie</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Pants</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Bearbricks</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>AIR FORCE</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>Fuld Mayor bag</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>UN WATCH</a>
-                                            </li>
-                                        </ul>
-                                        <ul className='bg-[#f1f1f1] pb-7 pt-6'>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>SRGN</a>
-                                            </li>
-                                            <li className='mb-3'>
-                                                <a href='/' className='block font-semibold p-[3px] px-20 hover:bg-gray-300 '>DIADORA</a>
-                                            </li>
+                                <div className="menu shadow-inherit z-50 absolute w-[100%]  mt-6 opacity-0 group-hover:opacity-100  invisible group-hover:visible" >
+                                 
+                                        <ul className='bg-[#f9f9f9] pb-7 pt-6 w-[70%]'>
 
-                                        </ul>
-
-                                    </div>
+                                            {
+                                                category.map((item)=>(
+                                                    <li className='mb-3'>
+                                                    <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>{item.name}</a>
+                                                </li>
+                                                ))
+                                            }
+                                          
+                                           </ul>
+                         
                                 </div>
                             </div>
                             <div className='group py-7'>

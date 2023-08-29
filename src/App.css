@@ -82,6 +82,12 @@
 
 
 }
+
+.carousel ul li{
+  width: 80px !important;
+}
+
+
 @media screen and (min-width: 320px) and (max-width: 640px) {
   .block input {
     text-align: center;

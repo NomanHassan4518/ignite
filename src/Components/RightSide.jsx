@@ -5,10 +5,9 @@ import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import SideBar from './SideBar'
-import { Drawer } from 'antd'
+import { Drawer, Dropdown, Button, Space } from 'antd'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../Services/Action/Action';
-
 const customStyles = {
   content: {
     top: '50%',
@@ -22,27 +21,60 @@ const customStyles = {
   },
 };
 
+const items = [
+  {
+    key: '1',
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+        1st menu item
+      </a>
+    ),
+  },
+  {
+    key: '2',
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+        2nd menu item
+      </a>
+    ),
+  },
+  {
+    key: '3',
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+        3rd menu item
+      </a>
+    ),
+  },
+]
+
 const RightSide = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modelData, setModelData] = useState("")
   const [indexOfItem, setIndexOfItem] = useState(null)
   const [quatity, setQuatity] = useState(1)
   const [sizeBorder, setSizeBorder] = useState()
+  const [dropDown, setDropdown] = useState('hidden')
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const passData = (indexOfItem) => {
-    navigate("/detail", { state: { modelData: {modelData,indexOfItem }} })
+  const openDropDown = () => {
+    const isShow=dropDown==="hidden"?"block":"hidden"
+    setDropdown(isShow)
   }
 
-  const handleCart =()=>{
+  const passData = () => {
+    return navigate(`/product/${modelData.id}`, { state: { modelData: { modelData, indexOfItem } } })
+  }
 
-    const drawerData = 
-      {
-        Product:modelData,
-        quatity:quatity
-      }
-    
+  const handleCart = () => {
+
+    const drawerData =
+    {
+      Product: modelData,
+      quatity: quatity
+    }
+
 
     dispatch(addToCart(drawerData))
   }
@@ -69,7 +101,7 @@ const RightSide = () => {
   function closeModal() {
     setIsOpen(false);
     setSizeBorder(0)
-    setQuatity((quatity - quatity)+1)
+    setQuatity((quatity - quatity) + 1)
   }
 
   const [isOpen, setisOpen] = React.useState(false)
@@ -84,7 +116,8 @@ const RightSide = () => {
     setSizeBorder(index)
   }
 
-  let Products = JSON.parse(localStorage.getItem('Products'))
+  let items = JSON.parse(localStorage.getItem('Products'))
+
 
   let title = <h1 className='text-center text-3xl font-bold'>Filters</h1>
   return (
@@ -95,19 +128,19 @@ const RightSide = () => {
           <div className="grid grid-cols-12">
             <div className="col-span-9"></div>
             <div className='col-span-3 flex justify-end'>
-              <p className='text-lg text-gray-500'>{Products.length} items</p>
+              <p className='text-lg text-gray-500'>{items.length} items</p>
             </div>
           </div>
 
           <div className='mt-12 md:px-5 mb-10 flex items-center justify-between'>
 
-            <button onClick={sidebar} class="text-black  w-[7rem] h-9 bg-white hover:bg-white focus:ring-0 focus:outline-none focus:ring-gray-400  rounded-md text-[14px]  border-[1px] border-gray-400 lg:hidden flex items-center justify-center text-center font-semibold   ">
+            <button onClick={sidebar}  class="text-black   w-[7rem] h-9 bg-white hover:bg-white focus:ring-0 focus:outline-none focus:ring-gray-400  rounded-md text-[14px]  border-[1px] border-gray-400 lg:hidden flex items-center justify-center text-center font-semibold   ">
               <span><svg xmlns="http://www.w3.org/2000/svg" width="18px" height="14px" viewBox="0 0 18 14"><g id="Group_36196" data-name="Group 36196" transform="translate(-925 -1122.489)"><path id="Path_22590" data-name="Path 22590" d="M942.581,1295.564H925.419c-.231,0-.419-.336-.419-.75s.187-.75.419-.75h17.163c.231,0,.419.336.419.75S942.813,1295.564,942.581,1295.564Z" transform="translate(0 -169.575)" fill="currentColor"></path><path id="Path_22591" data-name="Path 22591" d="M942.581,1951.5H925.419c-.231,0-.419-.336-.419-.75s.187-.75.419-.75h17.163c.231,0,.419.336.419.75S942.813,1951.5,942.581,1951.5Z" transform="translate(0 -816.512)" fill="currentColor"></path><path id="Path_22593" data-name="Path 22593" d="M1163.713,1122.489a2.5,2.5,0,1,0,1.768.732A2.483,2.483,0,0,0,1163.713,1122.489Z" transform="translate(-233.213)" fill="currentColor"></path><path id="Path_22594" data-name="Path 22594" d="M2344.886,1779.157a2.5,2.5,0,1,0,.731,1.768A2.488,2.488,0,0,0,2344.886,1779.157Z" transform="translate(-1405.617 -646.936)" fill="currentColor"></path></g></svg> </span><span className='mx-1'>Filters</span>
             </button>
 
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black bg-white hover:bg-white focus:ring-0 focus:outline-none focus:ring-gray-400  rounded-md text-[14px]  border-[1px] border-gray-400  px-2 py-2 text-center font-semibold inline-flex  " type="button">Sorting Options<svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" class="w-5 h-5 ml-6" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg></button>
-            <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black bg-white hover:bg-white focus:ring-0 focus:outline-none focus:ring-gray-400  rounded-md text-[14px]  border-[1px] border-gray-400  px-2 py-2 text-center font-semibold inline-flex  " type="button" onClick={openDropDown}>Sorting Options<svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" class="w-5 h-5 ml-6" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" ></path></svg></button>
+            <div id="dropdown" class={`z-10 ${dropDown} bg-white divide-y divide-gray-100 absolute top-64 rounded-lg shadow w-44 dark:bg-gray-700`}>
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" >
                 <li>
                   <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sorting Options</a>
                 </li>
@@ -126,27 +159,32 @@ const RightSide = () => {
               </ul>
             </div>
 
+
+
+
           </div>
           <div className="grid grid-cols-12 space-x-4">
             {
-              Products.map((product) => (
+              items.map((product) => (
                 <div className="col-span-6 sm:col-span-4 lg:col-span-3 mb-6" onClick={() => { handClick(product) }}>
-                  <div className="flex flex-col box-border lg:h-[26rem] lg:w-[13rem]  justify-center rounded-md cursor-pointer pb-3 items-start hover:shadow-lg  px-3 duration-500 hover:translate-y-1
+                  <div className="flex flex-col box-border lg:h-[20rem] lg:w-[13rem]  justify-center rounded-md cursor-pointer pb-3 items-start hover:shadow-lg   duration-500 hover:translate-y-1
                   ease-in-out">
-                    <div className=' lg:mb-3 mt-4 w-full'>
-                      <img src={product.image.original} alt="" className='w-full lg:w-[100%] object-scale-down' />
+                    <div className=' lg:mb-3  w-full h-[200px] '>
+                      <img src={product.image.original} alt="" className='w-full lg:w-[100%] h-full object-scale-down' />
                     </div>
 
-                    <div className='lg:py-3 lg:mt-[3rem] mt-5 flex flex-col items-center w-full'>
+                    <div className='lg:py-1  mt-5 flex flex-col items-center w-full'>
                       <h1 className='h-6 lg:h- text-base lg:text-lg overflow-hidden font-semibold'>{product.name}</h1>
                       <p className='h-7 overflow-hidden'>{product.description}</p>
                       <h1 className='text-lg font-semibold'>SAR {product.price.toFixed(2)}</h1>
                     </div>
                   </div>
-                
+
                 </div>
               ))
             }
+
+
 
           </div>
 
@@ -178,7 +216,7 @@ const RightSide = () => {
 
                 <div className='flex space-x-3'>
 
-                <button className={`border-[1px]   uppercase rounded hover:border-black   cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center ${sizeBorder === 1 ? "border-black" : "border-gray-200"}`} onClick={() => { sizebutton(index) }}>
+                  <button className={`border-[1px]   uppercase rounded hover:border-black   cursor-pointer transition duration-200 ease-in-out w-14 h-11 flex justify-center items-center ${sizeBorder === 1 ? "border-black" : "border-gray-200"}`} onClick={() => { sizebutton(index) }}>
                     <p className='font-bold text-md'>10</p>
                   </button>
 
@@ -199,7 +237,7 @@ const RightSide = () => {
                   </div>
 
 
-                  <button className={`lg:px-8 bg-[#999999] h-12 w-full rounded text-[15px] flex justify-center items-center text-white font-semibold cursor-not-allowed hover:bg-black transition duration-500 ease-in-out ${sizeBorder===1? "bg-black cursor-pointer":"bg-[#999999] cursor-not-allowed "}`} disabled={sizeBorder!==1} onClick={handleCart}>
+                  <button className={`lg:px-8 bg-[#999999] h-12 w-full rounded text-[15px] flex justify-center items-center text-white font-semibold cursor-not-allowed hover:bg-black transition duration-500 ease-in-out ${sizeBorder === 1 ? "bg-black cursor-pointer" : "bg-[#999999] cursor-not-allowed "}`} disabled={sizeBorder !== 1} onClick={handleCart}>
                     Add to Cart
                   </button>
                 </div>

@@ -40,8 +40,11 @@ const ModelTopProduct = () => {
   }
 
 
-  const passData = () => {
-    navigate("/detail", { state: { modelData: { modelData, indexOfItem } } })
+  const passData = (modelData) => {
+ 
+
+      return    navigate(`/product/${modelData.id}`, { state: { modelData: { modelData, indexOfItem } } })
+ 
   }
 
   function handleClick(Product, index) {
@@ -50,7 +53,6 @@ const ModelTopProduct = () => {
     setIndexOfItem(index)
   }
 
-  console.log(modelData);
 
   function closeModal() {
     setIsOpen(false);
@@ -85,6 +87,8 @@ const ModelTopProduct = () => {
               <h3 className='text-lg lg:text-2xl font-bold mx-2 lg:mx-5 lg:mb-4'>Top Product</h3>
               <Link to="/shop" className='text-[1rem] '>See All Product</Link>
             </div>
+
+         
 
             <div className='grid grid-cols-12 gap-4'>
 
@@ -169,7 +173,7 @@ const ModelTopProduct = () => {
 
                 </div>
 
-                <button onClick={() => { passData(indexOfItem) }} className='bg-black text-white my-7 font-semibold text-[16px] rounded w-full h-12'>
+                <button onClick={() => { passData(modelData) }} className='bg-black text-white my-7 font-semibold text-[16px] rounded w-full h-12'>
                   View Details
                 </button>
               </div>

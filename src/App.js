@@ -19,6 +19,7 @@ import Navbar from "./Components/Navbar";
 import CheckOut from "./Components/CheckOut";
 import { data } from "autoprefixer";
 import Spinner from "./Components/Spinner";
+import ProductDetail from "./Components/product/[id]";
 
 function App() {
   const [BusinessData, Categories, Brands , Products] = useQueries({
@@ -93,13 +94,14 @@ function App() {
     localStorage.setItem('Products' , JSON.stringify(Products.data))
   }
 
-  
+  console.log(Brands);
   let token = localStorage.getItem("Token");
-  // console.log(Products.data , "Products");
 
-  if (BusinessData.isFetching || Categories.isFetching || Brands.isFetching) {
+  if (BusinessData.isFetching || Categories.isFetching || Brands.isFetching || Products.isFetching) {
     return <Spinner />;
   }
+
+
 
   return (
     <>
@@ -111,8 +113,8 @@ function App() {
 
             <Route path="/shop" element={<Shop />}></Route>
             <Route path="/faq" element={<FAQ />}></Route>
-            <Route path="/detail" element={<Details />}></Route>
-            <Route path="/product" element={<Product />}></Route>
+            <Route path={`/product/:id`} element={<ProductDetail />}></Route>
+            {/* <Route path="/product" element={<Product />}></Route> */}
             <Route path="/about" element={<About />}></Route>
             <Route path="/privacy" element={<Privacy />}></Route>
             <Route path="/terms" element={<Terms />}></Route>
