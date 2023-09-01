@@ -1,13 +1,17 @@
 import React from 'react'
-import { topProduct } from './Data'
 import Modal from 'react-modal';
 import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import SideBar from './SideBar'
-import { Drawer, Dropdown, Button, Space } from 'antd'
+import { Drawer } from 'antd'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../Services/Action/Action';
+
+let business = JSON.parse(localStorage.getItem('BusinessData'))
+
+console.log(business);
+
 const customStyles = {
   content: {
     top: '50%',
@@ -21,34 +25,12 @@ const customStyles = {
   },
 };
 
-const items = [
-  {
-    key: '1',
-    label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-        1st menu item
-      </a>
-    ),
-  },
-  {
-    key: '2',
-    label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-        2nd menu item
-      </a>
-    ),
-  },
-  {
-    key: '3',
-    label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-        3rd menu item
-      </a>
-    ),
-  },
-]
+
 
 const RightSide = () => {
+  let items = JSON.parse(localStorage.getItem('Products'))
+
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modelData, setModelData] = useState("")
   const [indexOfItem, setIndexOfItem] = useState(null)
@@ -58,8 +40,9 @@ const RightSide = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+
   const openDropDown = () => {
-    const isShow=dropDown==="hidden"?"block":"hidden"
+    const isShow = dropDown === "hidden" ? "block" : "hidden"
     setDropdown(isShow)
   }
 
@@ -116,7 +99,6 @@ const RightSide = () => {
     setSizeBorder(index)
   }
 
-  let items = JSON.parse(localStorage.getItem('Products'))
 
 
   let title = <h1 className='text-center text-3xl font-bold'>Filters</h1>
@@ -134,29 +116,31 @@ const RightSide = () => {
 
           <div className='mt-12 md:px-5 mb-10 flex items-center justify-between'>
 
-            <button onClick={sidebar}  class="text-black   w-[7rem] h-9 bg-white hover:bg-white focus:ring-0 focus:outline-none focus:ring-gray-400  rounded-md text-[14px]  border-[1px] border-gray-400 lg:hidden flex items-center justify-center text-center font-semibold   ">
+            <button onClick={sidebar} class="text-black   w-[7rem] h-9 bg-white hover:bg-white focus:ring-0 focus:outline-none focus:ring-gray-400  rounded-md text-[14px]  border-[1px] border-gray-400 lg:hidden flex items-center justify-center text-center font-semibold   ">
               <span><svg xmlns="http://www.w3.org/2000/svg" width="18px" height="14px" viewBox="0 0 18 14"><g id="Group_36196" data-name="Group 36196" transform="translate(-925 -1122.489)"><path id="Path_22590" data-name="Path 22590" d="M942.581,1295.564H925.419c-.231,0-.419-.336-.419-.75s.187-.75.419-.75h17.163c.231,0,.419.336.419.75S942.813,1295.564,942.581,1295.564Z" transform="translate(0 -169.575)" fill="currentColor"></path><path id="Path_22591" data-name="Path 22591" d="M942.581,1951.5H925.419c-.231,0-.419-.336-.419-.75s.187-.75.419-.75h17.163c.231,0,.419.336.419.75S942.813,1951.5,942.581,1951.5Z" transform="translate(0 -816.512)" fill="currentColor"></path><path id="Path_22593" data-name="Path 22593" d="M1163.713,1122.489a2.5,2.5,0,1,0,1.768.732A2.483,2.483,0,0,0,1163.713,1122.489Z" transform="translate(-233.213)" fill="currentColor"></path><path id="Path_22594" data-name="Path 22594" d="M2344.886,1779.157a2.5,2.5,0,1,0,.731,1.768A2.488,2.488,0,0,0,2344.886,1779.157Z" transform="translate(-1405.617 -646.936)" fill="currentColor"></path></g></svg> </span><span className='mx-1'>Filters</span>
             </button>
+            <div>
 
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black bg-white hover:bg-white focus:ring-0 focus:outline-none focus:ring-gray-400  rounded-md text-[14px]  border-[1px] border-gray-400  px-2 py-2 text-center font-semibold inline-flex  " type="button" onClick={openDropDown}>Sorting Options<svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" class="w-5 h-5 ml-6" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" ></path></svg></button>
-            <div id="dropdown" class={`z-10 ${dropDown} bg-white divide-y divide-gray-100 absolute top-64 rounded-lg shadow w-44 dark:bg-gray-700`}>
-              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" >
-                <li>
-                  <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sorting Options</a>
-                </li>
-                <li>
-                  <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Price: low to high</a>
-                </li>
-                <li>
-                  <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Price:high to low</a>
-                </li>
-                <li>
-                  <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sort:a-z</a>
-                </li>
-                <li>
-                  <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sort:z-a</a>
-                </li>
-              </ul>
+              <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black bg-white hover:bg-white focus:ring-0 focus:outline-none focus:ring-gray-400  rounded-md text-[14px]  border-[1px] border-gray-400  px-2 py-2 text-center font-semibold inline-flex  " type="button" onClick={openDropDown}>Sorting Options<svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" class="w-5 h-5 ml-6" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" ></path></svg></button>
+              <div id="dropdown" class={`z-10  ${dropDown} bg-white divide-y divide-gray-100 absolute -mx-4 md:-mx-0   top-64 rounded-lg shadow w-44 dark:bg-gray-700`}>
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" >
+                  <li>
+                    <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sorting Options</a>
+                  </li>
+                  <li>
+                    <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Price: low to high</a>
+                  </li>
+                  <li>
+                    <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Price:high to low</a>
+                  </li>
+                  <li>
+                    <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sort:a-z</a>
+                  </li>
+                  <li>
+                    <a href="/" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sort:z-a</a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
 
@@ -197,7 +181,8 @@ const RightSide = () => {
           contentLabel="Example Modal"
           overlayClassName="Overlay2"
         >
-          <AiOutlineClose onClick={closeModal} />
+               <AiOutlineClose onClick={closeModal} className='cursor-pointer rounded-full bg-black text-white font-bold text-[2rem]' />
+
           <div className="h-[28rem] overflow-y-autoscroll">
             <div className=' lg:grid lg:grid-cols-12 flex flex-col'>
 
@@ -210,7 +195,7 @@ const RightSide = () => {
               <div className='lg:col-span-6 mt-5'>
                 <h3 className='font-semibold text-3xl mb-3 overflow-hidden h-9'>{modelData.name}</h3>
                 <p className='text-md text-gray-500 leading-7'>{modelData.description}</p>
-                <h1 className='font-semibold text-3xl mb-3  h-7 my-5'>{modelData.price}</h1>
+                <h1 className='font-semibold text-3xl mb-3  h-7 my-5'>{business.currency.symbol}{modelData.price?.toFixed(2)}</h1>
 
                 <h1 className='text-lg font-semibold mt-9 mb-5'>Size</h1>
 

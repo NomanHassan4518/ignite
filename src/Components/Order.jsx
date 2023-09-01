@@ -52,7 +52,7 @@ const Order = () => {
       <div className="mt-3">
         {
           productData.map((Item, index) => (
-            <div className='flex justify-between mt-8  border-b border-gray-200'>
+            <div className='flex justify-between items-center mt-8  border-b border-gray-200'>
               <div className="flex w-[70%] items-center">
                 <div className='w-20 h-17'>
                   <img src={Item.Product.image.original} alt="" />
@@ -61,7 +61,7 @@ const Order = () => {
               </div>
 
               <div>
-                <p>SAR {Item.Product.price * Item.quatity}</p>
+                <p>SAR {(Item.Product.price * Item.quatity).toFixed(2)}</p>
               </div>
             </div>
           ))
@@ -109,7 +109,7 @@ const Order = () => {
       <div className="mt-4">
         <div className='border-t border-gray-200 flex justify-between border-b py-6'>
           <p className='font-semibold'>Subtotal</p>
-          <p className='font-semibold'>SAR {totalPrice}</p>
+          <p className='font-semibold'>SAR {totalPrice.toFixed(2)}</p>
         </div>
 
         <div className='border-b border-gray-200 flex justify-between py-6'>
@@ -120,7 +120,7 @@ const Order = () => {
 
         <div className='border-b border-gray-200 flex justify-between py-6'>
           <p className='font-semibold'>Total</p>
-          <p className='font-semibold'>SAR {totalPrice + shippingFee}</p>
+          <p className='font-semibold'>SAR {(totalPrice + shippingFee).toFixed(2)}</p>
         </div>
 
       </div>

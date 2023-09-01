@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineClose } from 'react-icons/ai'
 import { removeToCart, increaseToQuantity, decreseToQuantity } from '../Services/Action/Action'
+import {BsFlag} from 'react-icons/bs'
 
 const Navbar = () => {
     let myData = useSelector((state) => state.cardData);
@@ -17,7 +18,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [cardProduct, setCardProduct] = useState(null);
     let dispatch = useDispatch()
-    let navigate =useNavigate()
+    let navigate = useNavigate()
 
     let price = totalPrice.toFixed(2)
     useEffect(() => {
@@ -42,22 +43,24 @@ const Navbar = () => {
     }
 
     const CheckOut = () => {
-        navigate("checkout", { state: { cardProduct: cardProduct } })
-        setIsOpen(false)
+        if (cardProduct?.length > 0) {
+            navigate("checkout", { state: { cardProduct: cardProduct } })
+            setIsOpen(false)
+        }
     }
 
     const add = (index) => {
         dispatch(increaseToQuantity(index))
-        console.log("Index" , index)
+        console.log("Index", index)
 
     }
 
     const sub = (index) => {
         dispatch(decreseToQuantity(index))
-        console.log("Index" , index)
+        console.log("Index", index)
     }
 
-    const remove = (index) => { 
+    const remove = (index) => {
         dispatch(removeToCart(index))
     }
 
@@ -72,16 +75,15 @@ const Navbar = () => {
                     <div className='hidden md:block lg:hidden pl-10'>
                         <NavigationBar />
                     </div>
-                    
+
                     <div>
                         <Link to='/'>
                             <div className=' px-10  py-8 '>
                                 <img src="https://un.myignite.site/_next/image?url=https%3A%2F%2Fignitestorage.blob.core.windows.net%2Figniteadmin-prod%2Fuploads%2Fbusiness_logos%2F1673962751_ezgif.com-gif-maker.png&w=64&q=75" style={{ height: "60px", width: "60px" }} alt="" />
                             </div>
                         </Link>
-
-
                     </div>
+
 
 
 
@@ -100,19 +102,19 @@ const Navbar = () => {
                                     <IoIosArrowDown className='text-gray-400 pt-1 text-[1.3rem]' />
                                 </Link>
                                 <div className="menu shadow-inherit z-50 absolute w-[100%]  mt-6 opacity-0 group-hover:opacity-100  invisible group-hover:visible" >
-                                 
-                                        <ul className='bg-[#f9f9f9] pb-7 pt-6 w-[70%]'>
 
-                                            {
-                                                category.map((item)=>(
-                                                    <li className='mb-3'>
+                                    <ul className='bg-[#f9f9f9] pb-7 pt-6 w-[70%]'>
+
+                                        {
+                                            category.map((item) => (
+                                                <li className='mb-3'>
                                                     <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>{item.name}</a>
                                                 </li>
-                                                ))
-                                            }
-                                          
-                                           </ul>
-                         
+                                            ))
+                                        }
+
+                                    </ul>
+
                                 </div>
                             </div>
                             <div className='group py-7'>
@@ -129,6 +131,16 @@ const Navbar = () => {
                         </div>
 
                     </nav>
+
+                    <div className='w-52 flex justify-end'>
+                        <div >
+                            <select className='focus:ring-0 focus:outline-none border-[1px] border-gray-200 rounded-md w-36 ' >
+                                <option>English-EN</option>
+                                <option>Urdu-UR</option>
+                                <option>Arabic-AR</option>
+                            </select>
+                        </div>
+                        </div>
 
 
                     <div className='hidden md:flex items-center absolute right-10  space-x-7'>
@@ -191,7 +203,7 @@ const Navbar = () => {
                                         <div className='group cursor-pointer relative'>
                                             <img src={items.Product?.image.original} alt="" className='p-[6px] h-28' />
                                             <div className='absolute top-0 bg-black bg-opacity-30 box-border h-full w-full scale-0 group-hover:scale-90  flex items-center justify-center text-w transition-all  duration-500   ease-in-out rounded-lg' onClick={() => { remove(index) }}>
-                                                <AiOutlineClose className='text-black bg-white rounded-full text-[15px]'  />
+                                                <AiOutlineClose className='text-black bg-white rounded-full text-[15px]' />
                                             </div>
                                         </div>
 

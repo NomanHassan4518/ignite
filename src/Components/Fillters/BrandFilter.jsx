@@ -2,7 +2,6 @@ import React from 'react'
 
 const BrandFilter = () => {
     let brand = JSON.parse(localStorage.getItem('Brands'))
-    console.log(brand);
   return (
     <div>
       <div className=" border-b-[1px] border-gray-300 mb-7 pb-7">

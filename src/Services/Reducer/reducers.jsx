@@ -1,10 +1,11 @@
-import { addCart, removeCart, increaseQuantity, decreaseQuantity } from "../Constant"
+import { addCart, removeCart, increaseQuantity, decreaseQuantity, filterwithsize, removesizeFilters } from "../Constant"
 
 
 const initailState = {
     cardData: [],
     totalPrice: 0,
-    totalItems: 0
+    totalItems: 0,
+    arrayFilterbySize: []
 }
 const cardItem = (state = initailState, action) => {
     switch (action.type) {
@@ -31,6 +32,34 @@ const cardItem = (state = initailState, action) => {
                 return generateFinalState(state, itemAdd)
             }
 
+        case filterwithsize:
+            {
+                const itemAdd = filterWithSize(state, action)
+                return {
+                    ...state,
+                    arrayFilterbySize: itemAdd,
+                }
+            }
+
+        case removesizeFilters:
+            {
+                const filterSize = removeSizeFilter(state, action)
+                return {
+                    ...state,
+                    arrayFilterbySize: filterSize
+                }
+            }
+
+            case "Clear All":
+                {
+                    const clearAll=claerAllsize(state,action)
+                    return {
+                        ...state,
+                        arrayFilterbySize:clearAll
+                    }
+                }
+
+
         default:
             return state;
 
@@ -42,10 +71,35 @@ const cardItem = (state = initailState, action) => {
 
 export default cardItem
 
+const filterWithSize = (state, action) => {
+    let itemIndex = state.arrayFilterbySize.findIndex((item) => {
+        return item.id === action.payload.id
+    })
+    let newArray = []
 
+    if (itemIndex > -1) {
+        let removeSize = state.arrayFilterbySize.filter((item) => {
+            return item.id !== action.payload.id
+        })
 
+        newArray = removeSize
+    } else {
+        let tempArray = [...state.arrayFilterbySize]
+        newArray = [...tempArray, action.payload]
+    }
 
+    return newArray
+}
 
+const removeSizeFilter = (state, action) => {
+    let remove = state.arrayFilterbySize.filter((current, index) => index !== action.payload)
+    return remove
+}
+
+const claerAllsize=(state , action)=>{
+    let clear = []
+    return clear
+}
 
 const addItemsWithQuantity = (state, action) => {
     const cartItemIndex = state.cardData.findIndex(
@@ -63,13 +117,11 @@ const addItemsWithQuantity = (state, action) => {
         const tempProduct = [...state.cardData];
         newItem = [...tempProduct, action.payload]
     }
-
     return newItem
 }
 
 const incresequantity = (state, action) => {
     const cartIndex = state.cardData.findIndex((item, index) => index === action.payload)
-    console.log(action.payload , "payload" , cartIndex , "cartIndex")
     let increase = [];
     if (cartIndex > -1) {
         let value = state.cardData[cartIndex].quatity;
@@ -101,7 +153,6 @@ const decreasequantity = (state, action) => {
         } else {
             let filterArray = state.cardData.filter((curItem, index) => index !== action.payload)
             items = filterArray
-            console.log(items)
         }
     }
     return items
@@ -115,9 +166,10 @@ const removeProduct = (state, action) => {
 
 
 
+
 const calculateTotal = (itemAdd) => {
     let finalPrice = 0
-    itemAdd.map((item) => (
+    itemAdd?.map((item) => (
         finalPrice = finalPrice + (item.Product.price * item.quatity)
 
     ))
@@ -140,6 +192,9 @@ const generateFinalState = (state, itemAdd) => {
         ...state,
         cardData: itemAdd,
         totalPrice: calculateTotal(itemAdd),
-        totalItems: totalItems(itemAdd)
+        totalItems: totalItems(itemAdd),
+
     }
 }
+
+

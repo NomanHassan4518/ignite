@@ -1,6 +1,5 @@
 import React from 'react'
 import Modal from 'react-modal';
-import { topProduct } from './Data'
 import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom';
@@ -28,6 +27,8 @@ const ModelTopProduct = () => {
   const [sizeBorder, setSizeBorder] = useState()
   const navigate = useNavigate()
   const dispatch = useDispatch();
+
+
   const handleCart = () => {
     const drawerData =
     {
@@ -35,8 +36,8 @@ const ModelTopProduct = () => {
       quatity: quatity
     }
 
+    console.log(drawerData , "Drawer");
     dispatch(addToCart(drawerData))
-
   }
 
 
@@ -76,7 +77,6 @@ const ModelTopProduct = () => {
 
   let Products = JSON.parse(localStorage.getItem('Products'))
   let items = Products.slice(0, 4)
-
   return (
     <>
       <div>
@@ -105,7 +105,7 @@ const ModelTopProduct = () => {
                         <p className='text-sm lg:text-base text-gray-400 lg:my-2 overflow-y-hidden overflow-x-hidden w-[80%] h-[25px] overflow-hidden '>
                           <div>{Product.description}</div>
                         </p>
-                        <h3 className='font-semibold text-base lg:text-xl'>SAR {Product.price}  </h3>
+                        <h3 className='font-semibold text-base lg:text-xl'>SAR {Product.price?.toFixed(2)}  </h3>
                       </div>
                     </div>
 
@@ -127,7 +127,7 @@ const ModelTopProduct = () => {
           overlayClassName="Overlay2"
           ariaHideApp={false}
         >
-          <AiOutlineClose onClick={closeModal} className='cursor-pointer' />
+          <AiOutlineClose onClick={closeModal} className='cursor-pointer rounded-full bg-black text-white font-bold text-[2rem]' />
           <div className="h-[28rem] overflow-y-autoscroll">
             <div className='lg:grid lg:grid-cols-12 flex flex-col'>
 
@@ -139,7 +139,7 @@ const ModelTopProduct = () => {
               <div className='lg:col-span-6 '>
                 <h3 className='font-semibold text-3xl mb-3 overflow-hidden h-9'>{modelData.name}</h3>
                 <p className='text-md text-gray-500 leading-7'>{modelData.description}</p>
-                <h1 className='font-semibold text-3xl mb-3  h-7 my-5'>{modelData.price}</h1>
+                <h1 className='font-semibold text-3xl mb-3  h-7 my-5'>SAR {modelData.price?.toFixed(2)}</h1>
 
                 <h1 className='text-lg font-semibold mt-9 mb-5'>Size</h1>
 

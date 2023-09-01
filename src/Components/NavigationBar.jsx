@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Drawer } from 'antd';
+import { Link } from 'react-router-dom';
 
 const NavigationBar = () => {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -10,9 +11,8 @@ const NavigationBar = () => {
 
     const [className, setClassName] = useState(false)
 
-
-
-    let img = <h1 className='text-center satisfy  text-[24px] font-bold'>UN</h1>
+    let category = JSON.parse(localStorage.getItem('Categories'))
+    let img = <img src='https://un.myignite.site/_next/image?url=https%3A%2F%2Fignitestorage.blob.core.windows.net%2Figniteadmin-prod%2Fuploads%2Fbusiness_logos%2F1673962751_ezgif.com-gif-maker.png&w=64&q=75' className='flex  justify-between'></img>
 
     return (
         <>
@@ -32,16 +32,15 @@ const NavigationBar = () => {
                 <div className='mt-6  overflow-scroll'>
                     <ul className='space-y-4'>
                         <li>
-                            <a href='/' className='text-xl text-gray-700'>Home
-
-                            </a>
+                            <Link onClick={()=>setIsOpen(false)} to='/' className='text-xl text-gray-700'>Home
+                            </Link>
 
                         </li>
 
                         <li >
                             <div className='w-full flex justify-between mb-3'>
-                                <a href='/shop' className='text-xl text-gray-700'>Categories
-                                </a>
+                                <Link onClick={()=>setIsOpen(false)} to='/shop' className='text-xl text-gray-700'>Categories
+                                </Link>
                                 <span className='mt-3' onClick={() => setClassName(!className)}>  <svg class="w-3 h-3 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
                                 </svg></span>
@@ -50,90 +49,13 @@ const NavigationBar = () => {
                             {
                                 className ?
                                     <ul>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>New Balance</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>Air Jordan</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>Adidas</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>Nike</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>Puma</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>Reebok</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>Asics</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>Under Armour</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 py-[3px] px-2 hover:bg-gray-300 '>Fila</a>
-                                        </li>
-
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Marc Jacobs</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Timberland</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Converse</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Sperry</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Vans</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Yeezy</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Zero Lo</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>SRGN Custom</a>
-                                        </li>
-
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>LOUIS VUITTON</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>NBA</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Hoodie</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Pants</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Bearbricks</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>AIR FORCE</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>Fuld Mayor bag</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>UN WATCH</a>
-                                        </li>
-
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>SRGN</a>
-                                        </li>
-                                        <li className='mb-3'>
-                                            <a href='/' className='block text-lg text-gray-400 p-[3px] px-2 hover:bg-gray-300 '>DIADORA</a>
-                                        </li>
+                                        {
+                                            category.map((item) => (
+                                                <li className='mb-3'>
+                                                    <Link onClick={()=>setIsOpen(false)}  to='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>{item.name}</Link>
+                                                </li>
+                                            ))
+                                        }
                                     </ul>
                                     : null
                             }
@@ -141,11 +63,11 @@ const NavigationBar = () => {
                         </li>
 
                         <li>
-                            <a href='/shop' className='text-xl text-gray-700'>Shop</a>
+                            <Link onClick={()=>setIsOpen(false)} to='/shop' className='text-xl text-gray-700'>Shop</Link>
                         </li>
 
                         <li>
-                            <a href='/faq' className='text-xl text-gray-700'>FAQ</a>
+                            <Link onClick={()=>setIsOpen(false)} to='/faq' className='text-xl text-gray-700'>FAQ</Link>
                         </li>
                     </ul>
                 </div>

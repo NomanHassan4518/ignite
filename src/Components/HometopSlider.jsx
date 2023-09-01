@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { sliderData } from './Data';
+import { Link } from 'react-router-dom';
 
 const HometopSlider = () => {
   const responsive = {
@@ -36,7 +36,7 @@ let categories =  JSON.parse( localStorage.getItem('Categories'))
         {
           categories.map((item , index) => (
             <div className='mx-6'key={index}>
-            <a className="flex justify-between h-[5rem] items-center bg-gray-100 rounded-md px-5 py-3 hover:bg-gray-200" href='/'>
+            <Link className="flex justify-between h-[5rem] items-center bg-gray-100 rounded-md px-5 py-3 hover:bg-gray-200" to='/'>
               <div className="flex items-center">
                 <span>
 
@@ -45,7 +45,7 @@ let categories =  JSON.parse( localStorage.getItem('Categories'))
                 </span>
                 <h3 className='mx-6 capitalize '>{item.name}</h3>
               </div>
-            </a>
+            </Link>
 
           </div>
           ))

@@ -3,35 +3,39 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useQuery, useQueries } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import Shop from "./Components/Shop";
 import FAQ from "./Components/FAQ";
-import Details from "./Components/Details";
 import Footer from "./Components/Footer";
-import Product from "./Components/Product";
 import About from "./Components/About";
 import Privacy from "./Components/Privacy";
 import Terms from "./Components/Terms";
 import Returns from "./Components/Returns";
 import Navbar from "./Components/Navbar";
 import CheckOut from "./Components/CheckOut";
-import { data } from "autoprefixer";
 import Spinner from "./Components/Spinner";
 import ProductDetail from "./Components/product/[id]";
+import MyAccount from "./Components/MyAccount/index";
+import Orders from "./Components/MyAccount/orders";
 
 function App() {
-  const [BusinessData, Categories, Brands , Products] = useQueries({
-    queries: [
-      {
-        queryKey: ["BusinessData"],
-        queryFn: () =>
-          axios
-            .get("https://pos-dev.myignite.online/connector/api/business/apnaa")
-            .then((res) => res.data),
-      },
+  
 
+
+  const { BusinessData, isFetching } = useQuery({
+    queryKey: ["BusinessData"],
+    queryFn: () =>
+      axios
+        .get("https://pos-dev.myignite.online/connector/api/business/apna")
+        .then((res) => res.data),
+})
+
+
+  const [ Categories, Brands , Products] = useQueries({
+    queries: [
       {
         queryKey: ["useCategoriesrs"],
         queryFn: () =>
@@ -94,10 +98,9 @@ function App() {
     localStorage.setItem('Products' , JSON.stringify(Products.data))
   }
 
-  console.log(Brands);
   let token = localStorage.getItem("Token");
 
-  if (BusinessData.isFetching || Categories.isFetching || Brands.isFetching || Products.isFetching) {
+  if (isFetching || Categories.isFetching || Brands.isFetching || Products.isFetching) {
     return <Spinner />;
   }
 
@@ -120,6 +123,8 @@ function App() {
             <Route path="/terms" element={<Terms />}></Route>
             <Route path="/returns" element={<Returns />}></Route>
             <Route path="/checkout" element={<CheckOut />}></Route>
+            <Route path="/my-account" element={<MyAccount/>}></Route>
+            <Route path="/my-account/orders" element={<Orders/>}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>
