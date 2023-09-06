@@ -34,7 +34,7 @@ let categories =  JSON.parse( localStorage.getItem('Categories'))
         autoPlaySpeed={autoPlaySpeed}
       >
         {
-          categories.map((item , index) => (
+          categories?.map((item , index) => (
             <div className='mx-6'key={index}>
             <Link className="flex justify-between h-[5rem] items-center bg-gray-100 rounded-md px-5 py-3 hover:bg-gray-200" to='/'>
               <div className="flex items-center">

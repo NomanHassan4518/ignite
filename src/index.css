@@ -88,7 +88,7 @@ body{
 
 .ant-drawer-title {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .react-multi-carousel-list .react-multiple-carousel__arrow--left {
@@ -122,4 +122,63 @@ body{
 select{
   /* outline: none; */
   border: 6pc solid red;
+}
+
+.animated-table tr {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Apply animation to each row individually */
+.animated-table tr:nth-child(1) {
+  animation: showRow 0.5s ease 0.5s forwards;
+}
+
+.animated-table tr:nth-child(2) {
+  animation: showRow 0.5s ease 1s forwards;
+}
+
+.animated-table tr:nth-child(3) {
+  animation: showRow 0.5s ease 1.5s forwards;
+}
+
+.animated-table tr:nth-child(4) {
+  animation: showRow 0.5s ease 1.5s forwards;
+}
+
+.animated-table tr:nth-child(5) {
+  animation: showRow 0.5s ease 1.5s forwards;
+}
+
+.animated-table tr:nth-child(6) {
+  animation: showRow 0.5s ease 1.5s forwards;
+}
+
+.animated-table tr:nth-child(7) {
+  animation: showRow 0.5s ease 1.5s forwards;
+}
+
+.animated-table tr:nth-child(8) {
+  animation: showRow 0.5s ease 1.5s forwards;
+}
+
+.animated-table tr:nth-child(9) {
+  animation: showRow 0.5s ease 1.5s forwards;
+}
+
+.animated-table tr:nth-child(10) {
+  animation: showRow 0.5s ease 1.5s forwards;
+}
+
+/* Keyframes for the animation */
+@keyframes showRow {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

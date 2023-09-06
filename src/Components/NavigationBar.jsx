@@ -12,7 +12,7 @@ const NavigationBar = () => {
     const [className, setClassName] = useState(false)
 
     let category = JSON.parse(localStorage.getItem('Categories'))
-    let img = <img src='https://un.myignite.site/_next/image?url=https%3A%2F%2Fignitestorage.blob.core.windows.net%2Figniteadmin-prod%2Fuploads%2Fbusiness_logos%2F1673962751_ezgif.com-gif-maker.png&w=64&q=75' className='flex  justify-between'></img>
+    let img = <img src='https://un.myignite.site/_next/image?url=https%3A%2F%2Fignitestorage.blob.core.windows.net%2Figniteadmin-prod%2Fuploads%2Fbusiness_logos%2F1673962751_ezgif.com-gif-maker.png&w=64&q=75' alt="" className='flex  justify-between'></img>
 
     return (
         <>

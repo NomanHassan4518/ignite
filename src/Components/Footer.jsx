@@ -59,7 +59,7 @@ const Footer = () => {
                                 <Link to="/terms" className=" hover:text-black mx-3">Terms & conditions</Link>
                             </li>
                             <li className="mb-4">
-                                <Link to="/returns" className="hover:text-black mx-3">Returns & Refunds Policy</Link>
+                                <Link to="/refundPolicy" className="hover:text-black mx-3">Returns & Refunds Policy</Link>
                             </li>
 
                             <li className="mb-4">

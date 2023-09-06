@@ -13,8 +13,6 @@ const Order = () => {
   })
 
   let paymentMethod = [
-
-
     {
       type: "Stripe",
       url: "https://apna.ignitehq.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fimage%2Fsrc%2Fcomponents%2Fassets%2FcardImg.7a524e7eee46cdc62481e3df275c3db7.jpg&w=828&q=75"

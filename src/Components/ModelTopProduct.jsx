@@ -75,7 +75,7 @@ const ModelTopProduct = () => {
     setSizeBorder(index)
   }
 
-  let Products = JSON.parse(localStorage.getItem('Products'))
+  let Products = JSON.parse(localStorage.getItem("Products"))
   let items = Products.slice(0, 4)
   return (
     <>
@@ -93,7 +93,7 @@ const ModelTopProduct = () => {
             <div className='grid grid-cols-12 gap-4'>
 
               {
-                items.map((Product, index) => (
+                items?.map((Product, index) => (
 
                   <div className='col-span-12 sm:col-span-6 mx-2' key={Product.id} onClick={() => { handleClick(Product, index) }}>
                     <div className="group rounded-md h-32 lg:h-[13rem] flex-row box-border flex overflow-hidden pe-3 items-center cursor-pointer bg-[#f9f9f9] transition-transform ease-linear ">

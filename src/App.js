@@ -18,29 +18,31 @@ import Navbar from "./Components/Navbar";
 import CheckOut from "./Components/CheckOut";
 import Spinner from "./Components/Spinner";
 import ProductDetail from "./Components/product/[id]";
-import MyAccount from "./Components/MyAccount/index";
-import Orders from "./Components/MyAccount/orders";
+import AccountOrder from "./Components/MyAccount/AccountOrder";
+import Dashboard from "./Components/MyAccount/Dashboard";
+import OrderdDetails from "./Components/MyAccount/OrderdDetails";
+import AccountDetail from "./Components/MyAccount/AccountDetail";
 
 function App() {
   
-
-
-  const { BusinessData, isFetching } = useQuery({
-    queryKey: ["BusinessData"],
-    queryFn: () =>
-      axios
-        .get("https://pos-dev.myignite.online/connector/api/business/apna")
-        .then((res) => res.data),
-})
-
+  const {data:BusinessData , isFetching}=useQuery(
+    {
+      queryKey: ["BusinessData"],
+      queryFn: () =>
+        axios
+          .get("https://pos-dev.myignite.online/connector/api/business/apna")
+          .then((res) => res.data ),
+  },
+  )
 
   const [ Categories, Brands , Products] = useQueries({
     queries: [
+    
       {
         queryKey: ["useCategoriesrs"],
         queryFn: () =>
           axios
-            .get("http://pos-dev.myignite.online/api/store-front/categories", {
+            .get("https://pos-dev.myignite.online/api/store-front/categories", {
               method: "GET",
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -53,7 +55,7 @@ function App() {
         queryKey: ["useBrands"],
         queryFn: () =>
           axios
-            .get("http://pos-dev.myignite.online/api/store-front/brands", {
+            .get("https://pos-dev.myignite.online/api/store-front/brands", {
               method: "GET",
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -66,7 +68,7 @@ function App() {
         queryKey: ["useProducts"],
         queryFn: () =>
           axios
-            .get("http://pos-dev.myignite.online/api/store-front/products", {
+            .get("https://pos-dev.myignite.online/api/store-front/products", {
               method: "GET",
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -77,13 +79,22 @@ function App() {
     ],
   });
 
+  let token = localStorage.getItem("Token");
+
   
   if (BusinessData?.data) {
     localStorage.setItem(
       "BusinessData",
-      JSON.stringify(BusinessData.data.data[0])
+      JSON.stringify(BusinessData?.data[0])
       );
-      localStorage.setItem("Token", BusinessData.data.data[0].token);
+      localStorage.setItem("Token", BusinessData.data[0].token);
+  }
+
+
+  if (isFetching) {
+    return(
+      <Spinner/>
+    )
   }
 
   if (Categories?.data) {
@@ -98,13 +109,14 @@ function App() {
     localStorage.setItem('Products' , JSON.stringify(Products.data))
   }
 
-  let token = localStorage.getItem("Token");
 
-  if (isFetching || Categories.isFetching || Brands.isFetching || Products.isFetching) {
+  if (BusinessData.isFetching || Categories.isFetching || Brands.isFetching || Products.isFetching) {
     return <Spinner />;
   }
 
 
+  // let business = JSON.parse(localStorage.getItem("BusinessData"))
+  // console.log(business  , "Token");
 
   return (
     <>
@@ -121,10 +133,12 @@ function App() {
             <Route path="/about" element={<About />}></Route>
             <Route path="/privacy" element={<Privacy />}></Route>
             <Route path="/terms" element={<Terms />}></Route>
-            <Route path="/returns" element={<Returns />}></Route>
+            <Route path="/refundPolicy" element={<Returns />}></Route>
             <Route path="/checkout" element={<CheckOut />}></Route>
-            <Route path="/my-account" element={<MyAccount/>}></Route>
-            <Route path="/my-account/orders" element={<Orders/>}></Route>
+            <Route path="/my-account" element={<Dashboard/>}></Route>
+            <Route path="/my-account/orders" element={<AccountOrder/>}></Route>
+            <Route path="/my-account/orders/:id" element={<OrderdDetails/>}></Route>
+            <Route path="/my-account/account-details" element={<AccountDetail/>}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

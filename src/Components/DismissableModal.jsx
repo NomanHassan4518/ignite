@@ -6,7 +6,7 @@ import { useState } from 'react';
 import "../App.css";
 import OtpInput from 'react-otp-input';
 import { toast } from 'react-toastify';
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -38,8 +38,8 @@ const Model = () => {
     const [registerBtn, setRegisterBtn] = useState(true)
     let token = localStorage.getItem('Token')
 
-    let authorized  = localStorage.getItem('isAuthorized')
-
+    let authorized = localStorage.getItem('isAuthorized')
+  
     const variefyNUmber = () => {
         let number = value.replace("+", "")
         axios({
@@ -85,23 +85,22 @@ const Model = () => {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             }
-        }).then((respone)=>{
-            if(respone.status===201){
+        }).then((respone) => {
+            if (respone.status === 201) {
                 setFirstName("")
                 setLastName("")
                 setEmail("")
                 setIsOpen(false)
                 toast.success("Register Successfully")
                 variefyNUmber()
-            } 
+            }
 
-        
+
         })
     }
+
+
     const otpBox = () => {
-
-
-
         if (value.length === 0) {
             // setOtpClass("hidden")
             toast.error('Invalid Mobile No:');
@@ -125,8 +124,10 @@ const Model = () => {
                     if (response.data.status === true) {
                         toast.success(response.data.message)
                         variefyNUmber()
+                       localStorage.setItem("User" , response.data.user.contact_id)
                     } else {
                         toast.error(response.data.message)
+                      
                     }
 
                 })
@@ -134,17 +135,15 @@ const Model = () => {
                     //handle error
                     console.log(response);
                 });
-
-
         }
-        else if (value.length !== 0) {
 
-            var bodyFormData = new FormData();
-            bodyFormData.set("mobile_no", value);
+        else if (value.length !== 0) {
+            var bodyFormDataa = new FormData();
+            bodyFormDataa.set("mobile_no", value);
             axios({
                 method: "post",
                 url: "https://pos-dev.myignite.online/connector/api/send-otp-consumer",
-                data: bodyFormData,
+                data: bodyFormDataa,
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`,
@@ -163,6 +162,8 @@ const Model = () => {
                 });
 
         }
+
+
     }
 
     function openModal() {
@@ -188,6 +189,8 @@ const Model = () => {
         setEmail(e.target.value)
     }
 
+
+
     return (
         <>
 
@@ -195,7 +198,8 @@ const Model = () => {
 
                 <button >
                     <div className='flex'>
-                        {authorized===true?<span className='font-semibold text-[20px]' onClick={openModal} >Sign In</span>:<span className='font-semibold text-[20px]'  ><Link to="/my-account">Account</Link></span>}
+                        {authorized ?  <span className='font-semibold text-[20px]'  ><Link to="/my-account">Account</Link></span> : <span className='font-semibold text-[20px]' onClick={openModal} >Sign In</span>}
+                      
                     </div>
                 </button>
 
@@ -231,7 +235,7 @@ const Model = () => {
                                 />
                             </div>
 
-                            
+
                             <div className={`${register} `}>
                                 <div className='mt-3'>
                                     <label className='font-semibold'>First Name</label>
@@ -256,13 +260,13 @@ const Model = () => {
                         {registerBtn ? <div className='relative'>
                             <button className="bg-[#3e3d3d]   text-white  text-[13px]  leading-4 inline-flex items-center justify-center font-bold rounded-md bg-heading w-full py-4 px-5 h-11 mt-5" onClick={otpBox}>Next
                             </button>
-                        </div> :  <div className='relative'>
+                        </div> : <div className='relative'>
                             <button className="bg-green-900   text-white  text-[13px]  leading-4 inline-flex items-center justify-center font-bold rounded-md bg-heading w-full py-4 px-5 h-11 mt-5" onClick={registerUSer}>Register
                             </button>
                         </div>}
 
-                       
-                       
+
+
                     </div>
 
 

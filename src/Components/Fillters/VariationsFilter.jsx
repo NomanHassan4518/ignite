@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import Spinner from '../Spinner';
-import { useDispatch } from 'react-redux';
-import { filterBySize } from '../../Services/Action/Action';
+// import { useDispatch } from 'react-redux';
+// import { filterBySize } from '../../Services/Action/Action';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -11,12 +11,12 @@ const VariationsFilter = () => {
   let navigate = useNavigate()
   let token = localStorage.getItem("Token");
   const [ variation ,setVariation]=useState([])
-  let dispatch = useDispatch()
+  // let dispatch = useDispatch()
   const { data:variationData, isFetching } = useQuery({
     queryKey: ["Variations"],
     queryFn: () =>
       axios
-        .get("http://pos-dev.myignite.online/connector/api/get_variations", {
+        .get("https://pos-dev.myignite.online/connector/api/get_variations", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -47,6 +47,7 @@ if(isValue===false){
   let a = updateVariation.map((i)=>{
     return i
   })
+  
   navigate(`/shop?variation=${a}` , {state:{updateVariation}} )
  
 } 
@@ -57,6 +58,8 @@ if(isValue===false){
 //     variation.filter((i)=> i!==value)
 //   )
 // }
+
+console.log(variationData);
 
     
   }

@@ -23,7 +23,7 @@ const TopBrand = () => {
         }
     };
 
- let brands = JSON.parse(localStorage.getItem('Brands'))
+ let brands = JSON.parse(localStorage.getItem("Brands"))
 
     const autoPlaySpeed = 2000
     return (

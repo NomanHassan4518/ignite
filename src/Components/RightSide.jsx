@@ -10,7 +10,7 @@ import { addToCart } from '../Services/Action/Action';
 
 let business = JSON.parse(localStorage.getItem('BusinessData'))
 
-console.log(business);
+
 
 const customStyles = {
   content: {

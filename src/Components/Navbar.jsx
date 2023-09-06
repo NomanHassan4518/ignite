@@ -9,7 +9,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineClose } from 'react-icons/ai'
 import { removeToCart, increaseToQuantity, decreseToQuantity } from '../Services/Action/Action'
-import {BsFlag} from 'react-icons/bs'
 
 const Navbar = () => {
     let myData = useSelector((state) => state.cardData);
@@ -77,11 +76,11 @@ const Navbar = () => {
                     </div>
 
                     <div>
-                        <Link to='/'>
+                        <a href='/'>
                             <div className=' px-10  py-8 '>
                                 <img src="https://un.myignite.site/_next/image?url=https%3A%2F%2Fignitestorage.blob.core.windows.net%2Figniteadmin-prod%2Fuploads%2Fbusiness_logos%2F1673962751_ezgif.com-gif-maker.png&w=64&q=75" style={{ height: "60px", width: "60px" }} alt="" />
                             </div>
-                        </Link>
+                        </a>
                     </div>
 
 
@@ -106,7 +105,7 @@ const Navbar = () => {
                                     <ul className='bg-[#f9f9f9] pb-7 pt-6 w-[70%]'>
 
                                         {
-                                            category.map((item) => (
+                                            category?.map((item) => (
                                                 <li className='mb-3'>
                                                     <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>{item.name}</a>
                                                 </li>
