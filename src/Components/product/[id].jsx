@@ -1,7 +1,7 @@
 import React from 'react'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../Services/Action/Action';
@@ -51,9 +51,9 @@ const ProductDetail = () => {
         <div className='md:px-8 mt-8'>
 
             <div className="flex space-x-3">
-                <span><a href='/' className='text-gray-400 hover:text-black'>Home  /  </a></span>
-                <span><a href='/product' className='text-gray-400 hover:text-black'>Product  /</a></span>
-                <span><a href='/' className='text-gray-400 hover:text-black'>1500 Concepts Cm1500cp</a></span>
+                <span><Link to='/' className='text-gray-400 hover:text-black'>Home  /  </Link></span>
+                <span><Link to='/product' className='text-gray-400 hover:text-black'>Product  /</Link></span>
+                <span><Link to='/' className='text-gray-400 hover:text-black'>1500 Concepts Cm1500cp</Link></span>
             </div>
 
             <div className="lg:grid lg:grid-cols-9 gap-x-5 mx-6 mt-10">

@@ -4,10 +4,12 @@ import SideBar from './SideBar'
 
 const Dashboard = () => {
     return (
-        <div className='mt-6 mx-5'>
-            <SideBar />
+        <div className='mt-6 lg:mx-5 md:grid grid-cols-12 flex flex-col'>
+           <div className='col-span-4'>
+           <SideBar />
+           </div>
 
-            <div class="p-4 lg:ml-96 sm:ml-64 h-96">
+            <div class="lg:p-4 w-full  h-96 mt-5 col-span-8">
                 <div className='mx-6'>
                     <h1 className='text-2xl font-bold'>Dashboard</h1>
 

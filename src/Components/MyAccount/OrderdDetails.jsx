@@ -21,7 +21,7 @@ const OrderdDetails = () => {
         setCheck("intrest")
     }
     return (
-        <div className='mt-6 mx-5 mb-16 grid grid-cols-12'>
+        <div className='mt-6 mx-5 mb-16 md:grid grid-cols-12 flex flex-col'>
             <div className='col-span-4'>
                 <SideBar />
             </div>
@@ -81,15 +81,15 @@ const OrderdDetails = () => {
                         </tr>
 
 
-                        <tr className='font-semibold text-lg bg-gray-200'>
+                        <tr className='font-semibold text-lg   w-full bg-gray-200'>
                             <td className="p-4">Customer Name:</td>
-                            <td className="p-4">{detailData.delivered_to}</td>
+                            <td className=" text-end">{detailData.delivered_to}</td>
                         </tr>
 
 
                         <tr className='font-semibold text-lg '>
                             <td className="p-4">Shipping Address:</td>
-                            <td className="p-4">{detailData.shipping_address}</td>
+                            <td className=" text-end">{detailData.shipping_address}</td>
                         </tr>
 
 
@@ -115,7 +115,7 @@ const OrderdDetails = () => {
 
                 {detailData.payment_status === "paid" ?
                     <div className='w-full  flex justify-end   mx-6 mt-4'>
-                        <div className='w-[50%] p-5'>
+                        <div className='lg:w-[50%] w-full p-5'>
                             <div className='border-2 flex py-5 px-4 space-x-8 items-center border-gray-100 hover:bg-gray-200' onClick={stripMethod}>
                                 <div>
                                     <input type="radio"

@@ -8,7 +8,7 @@ import MobileSignIn from './MobileSignIn'
 const MobileNavbar = () => {
     return (
         <>
-            <div className='w-full flex justify-around items-center bg-white fixed bottom-0 md:hidden h-14 sm:h-16 text-gray-700'>
+            <div className='w-full flex justify-around items-center bg-white fixed bottom-0 z-50 md:hidden h-14 sm:h-16 text-gray-700'>
 
                 <div>
                     <NavigationBar />

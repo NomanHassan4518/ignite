@@ -129,7 +129,7 @@ function App() {
             <Route path="/shop" element={<Shop />}></Route>
             <Route path="/faq" element={<FAQ />}></Route>
             <Route path={`/product/:id`} element={<ProductDetail />}></Route>
-            {/* <Route path="/product" element={<Product />}></Route> */}
+            <Route path="/product" element={<Shop />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/privacy" element={<Privacy />}></Route>
             <Route path="/terms" element={<Terms />}></Route>

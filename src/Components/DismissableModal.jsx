@@ -37,7 +37,7 @@ const Model = () => {
     const [email, setEmail] = useState('')
     const [registerBtn, setRegisterBtn] = useState(true)
     let token = localStorage.getItem('Token')
-
+ 
     let authorized = localStorage.getItem('isAuthorized')
   
     const variefyNUmber = () => {
@@ -107,7 +107,6 @@ const Model = () => {
         }
 
         else if (otp.length === 4) {
-
             var bodyFormData = new FormData();
             bodyFormData.set("mobile_no", value);
             bodyFormData.set("otp", otp)
@@ -124,7 +123,9 @@ const Model = () => {
                     if (response.data.status === true) {
                         toast.success(response.data.message)
                         variefyNUmber()
+                        console.log((response.data.user));
                        localStorage.setItem("User" , response.data.user.contact_id)
+                       localStorage.setItem("userData" ,JSON.stringify( response.data.user))
                     } else {
                         toast.error(response.data.message)
                       
@@ -189,8 +190,6 @@ const Model = () => {
         setEmail(e.target.value)
     }
 
-
-
     return (
         <>
 
@@ -199,6 +198,7 @@ const Model = () => {
                 <button >
                     <div className='flex'>
                         {authorized ?  <span className='font-semibold text-[20px]'  ><Link to="/my-account">Account</Link></span> : <span className='font-semibold text-[20px]' onClick={openModal} >Sign In</span>}
+
                       
                     </div>
                 </button>
