@@ -11,7 +11,7 @@ const AccountOrder = () => {
   let navigate = useNavigate()
 
 
-  const { data: ordersData, isFetching } = useQuery({
+  const { data: ordersData, isLoading } = useQuery({
     queryKey: ["OrderDetail"],
     queryFn: () =>
       axios
@@ -26,7 +26,7 @@ const AccountOrder = () => {
   )
 
 
-  if (isFetching) {
+  if (isLoading) {
     return (
       <Spinner />
     )

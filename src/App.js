@@ -25,7 +25,7 @@ import AccountDetail from "./Components/MyAccount/AccountDetail";
 
 function App() {
   
-  const {data:BusinessData , isFetching}=useQuery(
+  const {data:BusinessData , isLoading}=useQuery(
     {
       queryKey: ["BusinessData"],
       queryFn: () =>
@@ -91,7 +91,7 @@ function App() {
   }
 
 
-  if (isFetching) {
+  if (isLoading) {
     return(
       <Spinner/>
     )
@@ -110,7 +110,7 @@ function App() {
   }
 
 
-  if (BusinessData.isFetching || Categories.isFetching || Brands.isFetching || Products.isFetching) {
+  if (BusinessData.isLoading || Categories.isLoading || Brands.isLoading || Products.isLoading) {
     return <Spinner />;
   }
 

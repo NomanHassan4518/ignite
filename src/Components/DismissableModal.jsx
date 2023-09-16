@@ -39,6 +39,7 @@ const Model = () => {
     let token = localStorage.getItem('Token')
  
     let authorized = localStorage.getItem('isAuthorized')
+
   
     const variefyNUmber = () => {
         let number = value.replace("+", "")
@@ -62,6 +63,8 @@ const Model = () => {
                 setIsOpen(false)
                 toast.success("Login Successfully")
                 localStorage.setItem("isAuthorized", "true")
+                setOtpClass("hidden")
+                setValue("")
             }
 
         }).catch((error) => {
@@ -197,7 +200,7 @@ const Model = () => {
 
                 <button >
                     <div className='flex'>
-                        {authorized ?  <span className='font-semibold text-[20px]'  ><Link to="/my-account">Account</Link></span> : <span className='font-semibold text-[20px]' onClick={openModal} >Sign In</span>}
+                        {authorized==="true" ?  <span className='font-semibold text-[20px]'  ><Link to="/my-account">Account</Link></span> : <span className='font-semibold text-[20px]' onClick={openModal} >Sign In</span>}
 
                       
                     </div>

@@ -12,7 +12,7 @@ const VariationsFilter = () => {
   let token = localStorage.getItem("Token");
   const [ variation ,setVariation]=useState([])
   // let dispatch = useDispatch()
-  const { data:variationData, isFetching } = useQuery({
+  const { data:variationData, isLoading } = useQuery({
     queryKey: ["Variations"],
     queryFn: () =>
       axios
@@ -26,7 +26,7 @@ const VariationsFilter = () => {
   }
   )
 
-  if(isFetching){
+  if(isLoading){
     return (
       <Spinner/>
     )
