@@ -32,7 +32,7 @@ const NavigationBar = () => {
                 <div className='mt-6  overflow-scroll'>
                     <ul className='space-y-4'>
                         <li>
-                            <Link onClick={()=>setIsOpen(false)} to='/' className='text-xl text-gray-700'>Home
+                            <Link onClick={()=>setIsOpen(false)} to='/ignite' className='text-xl text-gray-700'>Home
                             </Link>
 
                         </li>

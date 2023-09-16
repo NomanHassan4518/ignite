@@ -115,16 +115,14 @@ function App() {
   }
 
 
-  // let business = JSON.parse(localStorage.getItem("BusinessData"))
-  // console.log(business  , "Token");
 
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <BrowserRouter>
+        <BrowserRouter basename="/ignite">
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route exact path="/ignite" element={<Home />}></Route>
 
             <Route path="/shop" element={<Shop />}></Route>
             <Route path="/faq" element={<FAQ />}></Route>

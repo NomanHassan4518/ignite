@@ -91,7 +91,7 @@ const Navbar = () => {
                         <div className=" flex space-x-6 items-center justify-center">
                             <div className='group py-7 '>
 
-                                <Link to="/" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black  after:w-0 after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0    hover:after:w-full '>
+                                <Link to="/ignite" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black  after:w-0 after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0    hover:after:w-full '>
                                     <span className='text-xl '>Home</span>
                                 </Link>
                             </div>
