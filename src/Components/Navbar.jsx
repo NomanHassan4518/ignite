@@ -76,11 +76,11 @@ const Navbar = () => {
                     </div>
 
                     <div>
-                        <a href='/'>
+                        <Link to='/'>
                             <div className=' px-10  py-8 '>
                                 <img src="https://un.myignite.site/_next/image?url=https%3A%2F%2Fignitestorage.blob.core.windows.net%2Figniteadmin-prod%2Fuploads%2Fbusiness_logos%2F1673962751_ezgif.com-gif-maker.png&w=64&q=75" style={{ height: "60px", width: "60px" }} alt="" />
                             </div>
-                        </a>
+                        </Link>
                     </div>
 
 
@@ -91,7 +91,7 @@ const Navbar = () => {
                         <div className=" flex space-x-6 items-center justify-center">
                             <div className='group py-7 '>
 
-                                <Link to="/ignite" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black  after:w-0 after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0    hover:after:w-full '>
+                                <Link to="/" className='inline-flex items-center text-sm relative px-2 py-[3px] font-normal text-gray-600 group-hover:text-black  after:w-0 after:h-[2px] after:bg-black after:top-[3rem] after:absolute after:content-[""] ease-in-out after:duration-500 after:left-0    hover:after:w-full '>
                                     <span className='text-xl '>Home</span>
                                 </Link>
                             </div>
@@ -107,7 +107,7 @@ const Navbar = () => {
                                         {
                                             category?.map((item) => (
                                                 <li className='mb-3'>
-                                                    <a href='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>{item.name}</a>
+                                                    <Link to='/' className='block font-semibold py-[3px] px-20 hover:bg-gray-300 '>{item.name}</Link>
                                                 </li>
                                             ))
                                         }

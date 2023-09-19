@@ -1,9 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
 
 const CategoryFilter = () => {
     let category = JSON.parse(localStorage.getItem('Categories'))
-    const [check , setCheck]=useState(true)
     const checkCategory=(name)=>{
    
     }

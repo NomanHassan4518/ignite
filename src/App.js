@@ -119,11 +119,10 @@ function App() {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <BrowserRouter basename="/ignite">
+        <BrowserRouter >
           <Navbar />
           <Routes>
-            <Route exact path="/ignite" element={<Home />}></Route>
-
+            <Route   path="/" element={<Home />}></Route>
             <Route path="/shop" element={<Shop />}></Route>
             <Route path="/faq" element={<FAQ />}></Route>
             <Route path={`/product/:id`} element={<ProductDetail />}></Route>

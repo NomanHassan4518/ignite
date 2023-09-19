@@ -25,6 +25,8 @@ const TopBrand = () => {
 
  let brands = JSON.parse(localStorage.getItem("Brands"))
 
+ console.log(brands);
+
     const autoPlaySpeed = 2000
     return (
         <div className='mt-12 mx-4 mb-12'>

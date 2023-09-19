@@ -27,7 +27,7 @@ const Header = () => {
       <div className="pb-7 hidden lg:flex w-full items-center overflow-hidden">
         <Link to='/' >Home</Link>
         <p>/</p>
-        <a href='/' className='font-bold '>Shop</a>
+        <Link to='/' className='font-bold '>Shop</Link>
       </div>
 
       <div className="block border-b-[1px] border-gray-300 mb-7 pb-7">
